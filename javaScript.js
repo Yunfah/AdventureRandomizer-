@@ -1,5 +1,5 @@
 var county;
-var;
+var continent;
 $(document).ready(function() {
 });
 
@@ -10,4 +10,11 @@ function getCoordinatesLat() {
 //Longitude: -180 to +180, toFixed() decides the amount of decimals
 function getCoordinatesLong() {
   return (Math.random() * (-180 - 180) + 180).toFixed(7) * 1;
+}
+
+function supplyCoordinates() {
+  var long = getCoordinatesLong();
+  console.log(long);
+  var lat = getCoordinatesLat();
+  console.log(lat);
 }
