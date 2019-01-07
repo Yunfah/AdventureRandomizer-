@@ -1,1 +1,14 @@
-stilmall
+/*header*/
+.jumbotron {
+  background-image: url("img/img_1.jpg");
+  background-size: cover;
+  height: 100vh;
+  color: white;
+}
+
+
+.container {
+margin-top: 200px;
+
+
+}
