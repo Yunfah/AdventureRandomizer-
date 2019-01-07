@@ -1,7 +1,7 @@
 var county;
 var
 $(document).ready(function() {
-}
+});
 
 //Latitude: -90 to +90, toFixed() decides the amount of decimals
 function getCoordinatesLat() {
