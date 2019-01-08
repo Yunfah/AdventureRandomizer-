@@ -1,7 +1,9 @@
 <!doctype html>
 <html lang="en">
+
+
+<!--HEAD-->
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="styles.css">
@@ -12,16 +14,18 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="javaScript.js"></script>
+    <title>Travel randomizer</title>
   </head>
+<!--END OF HEAD-->
+<!--BODY-->
   <body>
-
-
       <header>
          <div class="jumbotron text-center">
            <div class="container">
 
             <h1>START YOUR ADVENTURE HERE</h1>
-            <br>
+            <p>Where is your next travel destination?</p>
+
             <div class="header-content">
               <div class="row">
                 <div class="col">
@@ -29,17 +33,23 @@
                 </div>
                 <div class="col-6">
                   <!--column2-->
-                  <a class="btn btn-primary" onclick="getCoordinates();" href="#" role="button">Randomizer</a>
-                </div>
+
+
+                  <a id="randomizer-btn" class="btn btn-primary" onclick="getCoordinates();" href="#" role="button">Randomizer</a>
+
+
+              </div>
                 <div class="col">
                   <!--column3-->
                 </div>
               </div>
             </div>
           </div>
+          </div>
 
       </header>
 
-
   </body>
+  <!--END OF BODY-->
+
 </html>
