@@ -13,12 +13,25 @@ function getCoordinates() {
 
 function getHotels(long, lat) {
     $.ajax({
-      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+lat+","+long+"&radius=1500&type=restaurant&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
+      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+lat+","+long+"&radius=50000&type=lodging&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
+      //url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?latlng="+lat+","+long+"&result_type=locality&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
       headers: {"Accept": "application/json"}
     })
     .done(function(data) {
-      console.log(data);
+      if(data['results'] == 0) {
+        getCoordinates();
+      } else {
+        var hotelAmount = data['results'].length;
+        randomizeHotel(data['results']);
+        console.log(data);
+        console.log('hej');
+      }
     });
   //console.log(long);
   //console.log(lat);
+}
+
+function randomizeHotel(hotels) {
+  var hotelIndex = hotels[Math.floor(Math.random() * hotels.length)];
+  console.log(hotelIndex);
 }
