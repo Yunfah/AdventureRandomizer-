@@ -8,6 +8,17 @@ $(document).ready(function() {
 function getCoordinates() {
   var long = (Math.random() * (-180 - 180) + 180).toFixed(7) * 1;
   var lat = (Math.random() * (-90 - 90) + 90).toFixed(7) * 1;
-  console.log(long);
-  console.log(lat);
+  getHotels(long, lat);
+}
+
+function getHotels(long, lat) {
+    $.ajax({
+      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+lat+","+long+"&radius=1500&type=restaurant&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
+      headers: {"Accept": "application/json"}
+    })
+    .done(function(data) {
+      console.log(data);
+    });
+  //console.log(long);
+  //console.log(lat);
 }
