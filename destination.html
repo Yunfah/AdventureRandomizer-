@@ -18,6 +18,7 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo&callback=initMap"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="javaScript.js"></script>
+    <script src="Player.js"></script>
     <title>Destination</title>
   </head>
 <!--END OF HEAD-->
@@ -25,6 +26,12 @@
   <script>
   $(document).ready(function() {
     getCoordinates();
+
+    Player.init(Player.areas.EUROPE, document.getElementById('player-source'));
+
+    $('#nextTrack').on('click', function() {
+      Player.nextTrack();
+    });
   });
   </script>
   <body>
@@ -63,8 +70,12 @@
               <br>
               <p>grattis här är ditt nästa resmål</p>
 
+              <div id="player">
+              </div>
+              <div id="nextTrack">NEXT</div>
             </div>
         </div>
+
     </div>
 
     <!-- Second Half -->
