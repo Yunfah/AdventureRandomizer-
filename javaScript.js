@@ -1,7 +1,5 @@
 var county;
 var continent;
-$(document).ready(function() {
-});
 
 //Longitude: -180 to +180, toFixed() decides the amount of decimals
 //Latitude: -90 to +90, toFixed() decides the amount of decimals
@@ -43,9 +41,19 @@ function extractFacts(hotel) {
   console.log(hotelName);
   console.log(hotelLat);
   console.log(hotelLong);
-  displayInfo();
+  displayInfo(hotelLat, hotelLong);
 }
 
-function displayInfo() {
-  window.location.pathname = '/destination.html';
+function changeWindow() {
+  window.location.pathname = '/index.html';
+}
+
+function displayInfo(hotelLat, hotelLong) {
+  initMap(hotelLat, hotelLong);
+}
+
+function initMap(hotelLat, hotelLong) {
+  var location = {lat: hotelLat, lng: hotelLong};
+  var map = new google.maps.Map(document.getElementById('map'), {zoom: 4, center: location});
+  var marker = new google.maps.Marker({position: location, map: map});
 }
