@@ -48,12 +48,12 @@ function changeWindow() {
   window.location.pathname = '/index.html';
 }
 
-function displayInfo(hotelLat, hotelLong) {
-  initMap(hotelLat, hotelLong);
-}
-
-function initMap(hotelLat, hotelLong) {
+function placeMarker(hotelLat, hotelLong) {
   var location = {lat: hotelLat, lng: hotelLong};
   var map = new google.maps.Map(document.getElementById('map'), {zoom: 5, center: location});
   var marker = new google.maps.Marker({position: location, map: map});
+}
+
+function displayInfo(hotelLat, hotelLong) {
+  placeMarker(hotelLat, hotelLong);
 }

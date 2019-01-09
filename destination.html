@@ -8,7 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo&callback=initMap"></script>
+
+    <script>
+    function initMap() {
+      var location = {lat: 0, lng: 0};
+      var map = new google.maps.Map(document.getElementById('map'), {zoom: 5, center: location});
+    }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo&callback=initMap"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="javaScript.js"></script>
     <title>Destination</title>
@@ -42,7 +49,7 @@
 
 <div class="top-left">
 
-  <div class="col"><button type="button" class="close float-left" aria-label="Close" style="font-size:40px;">
+  <div class="col"><button type="button" class="close float-left" href="index.html" aria-label="Close" style="font-size:40px;">
     <span aria-hidden="true">&times;</span>
   </button></div>
 
@@ -63,12 +70,8 @@
     <!-- Second Half -->
 
 
-<<<<<<< HEAD
     <div class="col-md-8 p-0 bg-white h-md-100 loginarea">
     <div id="map"></div>
-=======
-    <div class="col-md-8 p-0 bg-white h-md-100">
->>>>>>> 2cecdcd8dff6f0b44434942f3f682ea6e32995b2
 
 
 
@@ -76,8 +79,6 @@
 
     </div>
     </div>
-
-
 
   </body>
   <!--END OF BODY-->
