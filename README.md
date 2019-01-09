@@ -2,6 +2,8 @@
 
 ## Getting started
 
+install nodejs
+
 `npm install` to install the dependencies
 
 ## Starting the server
