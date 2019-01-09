@@ -1,5 +1,3 @@
-var county;
-var continent;
 
 //Longitude: -180 to +180, toFixed() decides the amount of decimals
 //Latitude: -90 to +90, toFixed() decides the amount of decimals
@@ -30,7 +28,7 @@ function randomizeHotel(hotels) {
   extractFacts(hotel);
 }
 
-function extractFacts(hotel) {
+function extractFacts(hotel) { //kan vara onödig
   var hotelName = hotel['name'];
   var hotelRating = hotel['rating'];
   var address = hotel['vicinity'];
@@ -56,4 +54,39 @@ function placeMarker(hotelLat, hotelLong) {
 
 function displayInfo(hotelLat, hotelLong) {
   placeMarker(hotelLat, hotelLong);
+  //Uppdatera vänstra delen av med namn, bild??, rating, stad, land
+}
+
+function getHotelInfo() { //eventuellt för att hämta bild, och land/stad
+  $.ajax({
+    url:
+
+    headers: {"Accept": "application/json"}
+  })
+  .done(function(data) {
+
+
+  });
+}
+
+function getAttractions() { //hämta sevärdheter i närheten, samt lägg dem i en lista
+  $.ajax({
+    url:
+
+    headers: {"Accept": "application/json"}
+  })
+  .done(function(data) {
+
+  });
+}
+
+function getMusic(continent) { //beroende på kontinent, hämta hem och spela upp rätt musik
+  $.ajax({
+    url:
+
+    headers: {"Accept": "application/json"}
+  })
+  .done(function(data) {
+
+  });
 }
