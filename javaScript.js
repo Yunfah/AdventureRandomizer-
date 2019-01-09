@@ -10,19 +10,31 @@ function getCoordinates() {
 }
 
 function getHotels(long, lat) {
-    $.ajax({
-      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+lat+","+long+"&radius=50000&type=lodging&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
-      //url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?latlng="+lat+","+long+"&result_type=locality&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
-      headers: {"Accept": "application/json"}
-    })
-    .done(function(data) {
-      if(data['results'] == 0) {
-        getCoordinates();
-      } else {
-        var hotelAmount = data['results'].length;
-        randomizeHotel(data['results']);
-      }
+  var pyrmont = new google.maps.LatLng(lat, long);
+
+  map = new google.maps.Map(document.getElementById('map'), {
+      center: pyrmont,
+      zoom: 15
     });
+
+  var request = {
+    location: pyrmont,
+    radius: '500',
+    type: ['hotel']
+  };
+
+  service = new google.maps.places.PlacesService(map);
+  service.nearbySearch(request, function(data) {
+    console.log(data);
+    if(data.length === 0) {
+      getCoordinates();
+    } else {
+      /*
+      var hotelAmount = data['results'].length;
+      randomizeHotel(data['results']);
+      */
+    }
+  });
 }
 
 function randomizeHotel(hotels) {
