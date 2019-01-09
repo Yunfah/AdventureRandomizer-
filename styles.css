@@ -4,19 +4,25 @@
   background-size: cover;
   height: 100vh;
   color: white;
+  margin: 0px 0px 0px 0px;
 }
 
 
-.container {
+.container_1 {
 margin-top: 180px;
 }
 
-.container h1{
-font-size: 50px;
+.container_1 h1{
+font-size: 55px;
+}
+
+.container_1 h5{
+font-weight: 400;
+
 }
 
 #randomizer-btn{
-background-color: #39C881;
+background-color: #6759A3;
 border: 0px;
 padding: 10px 30px 10px 30px;
 border-radius: 50px 50px 50px 50px;
@@ -24,6 +30,19 @@ border-radius: 50px 50px 50px 50px;
 
 
 /*DESTINATION PAGE*/
+
+.container_2{
+
+}
+
+
+.top-left {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+}
+
+
 
 /*MAP*/
 #map {
