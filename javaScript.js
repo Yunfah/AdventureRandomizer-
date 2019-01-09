@@ -23,12 +23,8 @@ function getHotels(long, lat) {
       } else {
         var hotelAmount = data['results'].length;
         randomizeHotel(data['results']);
-        console.log(data);
-        console.log('hej');
       }
     });
-  //console.log(long);
-  //console.log(lat);
 }
 
 function randomizeHotel(hotels) {
