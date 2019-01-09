@@ -54,6 +54,6 @@ function displayInfo(hotelLat, hotelLong) {
 
 function initMap(hotelLat, hotelLong) {
   var location = {lat: hotelLat, lng: hotelLong};
-  var map = new google.maps.Map(document.getElementById('map'), {zoom: 4, center: location});
+  var map = new google.maps.Map(document.getElementById('map'), {zoom: 5, center: location});
   var marker = new google.maps.Marker({position: location, map: map});
 }
