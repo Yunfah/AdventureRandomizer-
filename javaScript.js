@@ -28,6 +28,24 @@ function getHotels(long, lat) {
 }
 
 function randomizeHotel(hotels) {
-  var hotelIndex = hotels[Math.floor(Math.random() * hotels.length)];
-  console.log(hotelIndex);
+  var hotel = hotels[Math.floor(Math.random() * hotels.length)];
+  extractFacts(hotel);
+}
+
+function extractFacts(hotel) {
+  var hotelName = hotel['name'];
+  var hotelRating = hotel['rating'];
+  var address = hotel['vicinity'];
+  var hotelLat = hotel['geometry']['location']['lat'];
+  var hotelLong = hotel['geometry']['location']['lng'];
+  console.log(hotelRating);
+  console.log(address);
+  console.log(hotelName);
+  console.log(hotelLat);
+  console.log(hotelLong);
+  displayInfo();
+}
+
+function displayInfo() {
+  window.location.pathname = '/destination.html';
 }
