@@ -9,8 +9,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" type="text/css" href="styles.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <title>Destination</title>
 
   <script>
     function initMap() {
@@ -22,37 +20,18 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="javaScript.js"></script>
   <script src="Player.js"></script>
-
-
-  <script>
-    $(document).ready(function() {
-      getCoordinates();
-      Player.init(Player.areas.EUROPE, document.getElementById('player-source'));
-
-      $('#nextTrack').on('click', function() {
-        Player.nextTrack();
-      });
-    });
-    </script>
-
-
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
-
-
+  <title>Destination</title>
 </head>
 <!--END OF HEAD-->
 <!--BODY-->
 <script>
   $(document).ready(function() {
     getCoordinates();
-    //Player.init(Player.areas.EUROPE, document.getElementById('player-source'));
+    Player.init(Player.areas.EUROPE, document.getElementById('player-source'));
 
-    //$('#nextTrack').on('click', function() {
-    //  Player.nextTrack();
+    $('#nextTrack').on('click', function() {
+      Player.nextTrack();
+    });
   });
   </script>
 
@@ -68,8 +47,8 @@
 
       <div class="container_2">
 
-        <!--BILD PÅ HOTELL (bild högst upp till vänster)-->
-        <img src="img/no_img.jpg" id="destination-img" class="img-fluid" alt="Responsive image">
+        <img src="img/img_2.jpg" id="destination-img" class="img-fluid" alt="Responsive image">
+
 
         <div class="top-left">
 
@@ -83,17 +62,18 @@
 
       <div class="d-md-flex p-4">
         <div class="content_area">
-          <!--CITY-->
-          <h2 id="city">City</h2>
-          <!--COUNTRY-->
-          <h3 id="country">Country</h3>
+          <h2 id="city">Los Angeles</h2>
+          <h3 id="country">California, USA</h3>
           <br>
 
 
           <div class="row">
             <div id="info-left" class="col">
-              <!--HOTELLNAMN-->
-              <h4 id="hotel">Hotel Name</h4>
+
+              <h4 id="hotel">Sheraton Getaway Los Angeles</h4>
+              <br>
+              <h5>Nights</h5>
+              <h3 id="nights">4</h3>
 
               <br>
               <h5>Hotel rating</h5>
@@ -101,66 +81,20 @@
             </div>
             <div id="info-right" class="col">
 
-              <a id="proceed-btn" class="btn btn-primary" href="#" role="button">Proceed to ???</a>
+              PRISPRISPRISPRIS
 
             </div>
           </div>
-
 
         </div>
       </div>
 
-      <!--SPOTIFY WIDGET-->
 
-    <!--  <div class="bottom-left">
+      <div class="bottom-left">
         <div id="spotify-player">
-          <!--<iframe src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          <iframe src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
         </div>
-      </div>-->
-
-
-      <div id="accordion" class="panel-group">
-          <div class="panel">
-            <div class="panel-heading">
-            <h4 class="panel-title">
-              <a href="#panelBodyOne" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion">Content One</a>
-              </h4>
-            </div>
-            <div id="panelBodyOne" class="panel-collapse collapse">
-            <div class="panel-body">
-                <p>Energistically drive  partnerships vis-a-vis superior partnerships.</p>
-              </div>
-            </div>
-          </div>
-          <div class="panel">
-            <div class="panel-heading">
-            <h4 class="panel-title">
-              <a href="#panelBodyTwo" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion">Content Two</a>
-              </h4>
-            </div>
-            <div id="panelBodyTwo" class="panel-collapse collapse">
-            <div class="panel-body">
-                <p>Energistically drive standardized communities through user friendly results. Phosfluorescently initiate superior technologies vis-a-vis low-risk high-yield solutions. Objectively facilitate clicks-and-mortar partnerships vis-a-vis superior partnerships.</p>
-              </div>
-            </div>
-          </div>
-          <div class="panel">
-            <div class="panel-heading">
-            <h4 class="panel-title">
-              <a href="#panelBodyThree" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion">Content Three</a>
-              </h4>
-            </div>
-            <div id="panelBodyThree" class="panel-collapse collapse">
-            <div class="panel-body">
-                <p>Energistically drive standardized communities through user friendly results. Phosfluorescently initiate superior technologies vis-a-vis low-risk high-yield solutions. Objectively facilitate clicks-and-mortar partnerships vis-a-vis superior partnerships.Energistically drive standardized communities through user friendly results. Phosfluorescently initiate superior technologies vis-a-vis low-risk high-yield solutions. Objectively facilitate clicks-and-mortar partnerships vis-a-vis superior partnerships.Energistically drive standardized communities through user friendly results. Phosfluorescently initiate superior technologies vis-a-vis low-risk high-yield solutions. Objectively facilitate clicks-and-mortar partnerships vis-a-vis superior partnerships.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-
+      </div>
     </div>
 
 
