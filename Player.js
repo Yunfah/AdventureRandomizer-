@@ -1,4 +1,3 @@
-// Base64 encoded client id and secret
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 
 (function() {

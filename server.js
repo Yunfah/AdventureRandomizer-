@@ -1,3 +1,4 @@
+ // Base64 encoded client id and secret
 const AUTH = 'ODhmZTVjZTRjMjQwNDkwNDk4ZmMzNDRkNDZjODllZDI6YzVkNDUyMjc0YzgzNDNjNDg0MGU0MzE4ZTZmNzU3MjA=';
 const ACCESS_TOKEN_URL = 'https://accounts.spotify.com/api/token';
 
