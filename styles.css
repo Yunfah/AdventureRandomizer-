@@ -93,6 +93,67 @@ font-weight: 300;
 }
 
 
+/*ACCORDION MENY*/
+
+#accordion .panel {
+  border-radius: 0;
+  border: 0;
+  margin-top: 0px;
+}
+
+/*accordion utseende*/
+#accordion a {
+  display: block;
+  padding: 15px 15px;
+  border-top: 2px solid #fff;
+  text-decoration: none;
+  background-color: #F3F3F3;
+}
+
+/*accordion hover*/
+#accordion .panel-heading a.collapsed:hover,
+#accordion .panel-heading a.collapsed:focus {
+  background-color: #6759A3;
+  color: white;
+  transition: all 0.2s ease-in;
+}
+#accordion .panel-heading a.collapsed:hover::before,
+#accordion .panel-heading a.collapsed:focus::before {
+  color: white;
+}
+#accordion .panel-heading {
+  padding: 0;
+  border-radius: 0px;
+
+}
+#accordion .panel-heading a:not(.collapsed) {
+  color: white;
+  background-color: #6759A3;
+  transition: all 0.2s ease-in;
+}
+
+/* Add Indicator fontawesome icon to the left */
+#accordion .panel-heading .accordion-toggle::before {
+  float: left;
+  color: white;
+  padding-left: 10px;
+  font-weight: lighter;
+  transform: rotate(0deg);
+  transition: all 0.2s ease-in;
+}
+#accordion .panel-heading .accordion-toggle.collapsed::before {
+  color: #444;
+  transform: rotate(-135deg);
+  transition: all 0.2s ease-in;
+}
+
+
+
+
+
+
+
+
 
 /*STJÄRNOR*/
 #rating{
@@ -103,7 +164,7 @@ color: #FFD45F
 
 /*BILD PÅ DESTINATION/HOTELL*/
 .container_2 #destination-img{
-  object-fit: none; /* Do not scale the image */
+  object-fit: cover; /* Do not scale the image */
   object-position: center; /* Center the image within the element */
   width: 100%;
   max-height: 180px;
