@@ -34,13 +34,14 @@ function extractFacts(hotel) { //kan vara onödig
   //hantera 0 om den är undefined, ha en hårdkodad bild
   var imageRef = hotel['photos']['0']['photo_reference'];
   var placeID = hotel['place_id'];
+  displayInfo(hotelLat, hotelLong);
   getLocation(placeID);
 
   //$('#destination-img').html('<img src="' + photoref+'">');
   console.log(placeID);
   console.log(hotelLat);
   console.log(hotelLong);
-  displayInfo(hotelLat, hotelLong);
+
   getPicture(imageRef);
 }
 
