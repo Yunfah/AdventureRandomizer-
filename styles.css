@@ -93,6 +93,10 @@ font-weight: 300;
 }
 
 
+.row #info-left{
+min-width: 200px;
+}
+
 /*ACCORDION MENY*/
 
 #accordion .panel {
@@ -145,19 +149,6 @@ font-weight: 300;
   color: #444;
   transform: rotate(-135deg);
   transition: all 0.2s ease-in;
-}
-
-
-
-
-
-
-
-
-
-/*STJÄRNOR*/
-#rating{
-color: #FFD45F
 }
 
 
