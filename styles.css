@@ -31,6 +31,13 @@ border-radius: 50px 50px 50px 50px;
 
 /*DESTINATION PAGE*/
 
+#proceed-btn{
+background-color: #39C881;
+border: 0px;
+padding: 10px 30px 10px 30px;
+}
+
+
 .content_area h2{
 font-weight: 400;
 font-size: 30px;
@@ -57,10 +64,19 @@ color: #747474;
 font-weight: 300;
 }
 
+.content_area h6{
+font-size: 12px;
+font-weight: 400;
+color: #747474;
+}
 
 
-.info-left {
-  border-right: 2px dashed #333;
+#info-left {
+  border-right: 2px solid #F3F3F3;
+}
+
+#info-right{
+  text-align: center;
 }
 
 
@@ -146,15 +162,6 @@ min-width: 200px;
   max-height: 180px;
   margin-bottom: 1rem;
 }
-
-
-
-
-
-
-
-
-
 
 
 
