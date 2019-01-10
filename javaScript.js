@@ -1,7 +1,3 @@
-var county;
-var continent;
-$(document).ready(function() {
-});
 
 //Longitude: -180 to +180, toFixed() decides the amount of decimals
 //Latitude: -90 to +90, toFixed() decides the amount of decimals
@@ -32,7 +28,7 @@ function randomizeHotel(hotels) {
   extractFacts(hotel);
 }
 
-function extractFacts(hotel) {
+function extractFacts(hotel) { //kan vara onödig
   var hotelName = hotel['name'];
   var hotelRating = hotel['rating'];
   var address = hotel['vicinity'];
@@ -43,9 +39,20 @@ function extractFacts(hotel) {
   console.log(hotelName);
   console.log(hotelLat);
   console.log(hotelLong);
-  displayInfo();
+  displayInfo(hotelLat, hotelLong);
 }
 
-function displayInfo() {
-  window.location.pathname = '/destination.html';
+function changeWindow() {
+  window.location.pathname = '/index.html';
+}
+
+function placeMarker(hotelLat, hotelLong) {
+  var location = {lat: hotelLat, lng: hotelLong};
+  var map = new google.maps.Map(document.getElementById('map'), {zoom: 4, center: location});
+  var marker = new google.maps.Marker({position: location, map: map});
+}
+
+function displayInfo(hotelLat, hotelLong) {
+  placeMarker(hotelLat, hotelLong);
+  //Uppdatera vänstra delen av med namn, bild??, rating, stad, land
 }
