@@ -3,27 +3,28 @@
 
 
 <!--HEAD-->
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-    <script>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+  <script>
     function initMap() {
       var location = {lat: 0, lng: 0};
       var map = new google.maps.Map(document.getElementById('map'), {zoom: 5, center: location});
     }
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo&callback=initMap"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="javaScript.js"></script>
-    <script src="Player.js"></script>
-    <title>Destination</title>
-  </head>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo&callback=initMap"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="javaScript.js"></script>
+  <script src="Player.js"></script>
+  <title>Destination</title>
+</head>
 <!--END OF HEAD-->
 <!--BODY-->
-  <script>
+<script>
   $(document).ready(function() {
     getCoordinates();
 
@@ -34,67 +35,81 @@
     });
   });
   </script>
-  <body>
+
+<body>
+
+  <div class="d-md-flex h-md-100 align-items-center">
+
+    <!-- VÄNSTER HALVA MED INFO-->
+
+    <div class="col-md-4 p-0 h-md-100">
 
 
 
-    <div class="d-md-flex h-md-100 align-items-center">
+      <div class="container_2">
 
-    <!-- First Half -->
-
-    <div class="col-md-4 p-0 bg-indigo h-md-100">
+        <img src="img/img_2.jpg" id="destination-img" class="img-fluid" alt="Responsive image">
 
 
+        <div class="top-left">
 
-<div class="container_2">
-
-<img src="img/uluru.jpg" id="destination-img" class="img-fluid" alt="Responsive image">
-
-
-<div class="top-left">
-
-  <div class="col"><button type="button" class="close float-left" onclick="changeWindow();" aria-label="Close" style="font-size:40px;">
-    <span aria-hidden="true">&times;</span>
-  </button></div>
+          <div class="col"><button type="button" class="close float-left" onclick="changeWindow();" aria-label="Close" style="font-size:40px;">
+              <span aria-hidden="true">&times;</span>
+            </button></div>
 
 
-</div>
-</div>
+        </div>
+      </div>
 
-        <div class="d-md-flex p-4">
-            <div class="content_area">
-              <h2 id="city">Uluru</h2>
-              <h3 id="country">Australia</h3>
+      <div class="d-md-flex p-4">
+        <div class="content_area">
+          <h2 id="city">Los Angeles</h2>
+          <h3 id="country">California, USA</h3>
+          <br>
+
+
+          <div class="row">
+            <div id="info-left" class="col">
+
+              <h4 id="hotel">Sheraton Getaway Los Angeles</h4>
               <br>
-              <p>grattis här är ditt nästa resmål</p>
+              <h5>Nights</h5>
+              <h3 id="nights">4</h3>
 
+              <br>
+              <h5>Hotel rating</h5>
+              <div id="rating">★ ★ ★ ★ ★</div>
+            </div>
+            <div id="info-right" class="col">
+
+              PRISPRISPRISPRIS
 
             </div>
-        </div>
-
-
-        <div class="bottom-left">
-
-        <iframe src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          </div>
 
         </div>
+      </div>
+
+
+      <div class="bottom-left">
+        <div id="spotify-player">
+          <iframe src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- HÖGER HALVA MED KARTA -->
+    <div class="col-md-8 p-0 bg-white h-md-100 maparea">
+      <div id="map"></div>
+
 
     </div>
 
-    <!-- Second Half -->
+  </div>
+  </div>
 
-
-    <div class="col-md-8 p-0 bg-white h-md-100 loginarea">
-    <div id="map"></div>
-
-
-
-    </div>
-
-    </div>
-    </div>
-
-  </body>
-  <!--END OF BODY-->
+</body>
+<!--END OF BODY-->
 
 </html>

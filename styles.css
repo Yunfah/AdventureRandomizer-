@@ -31,15 +31,44 @@ border-radius: 50px 50px 50px 50px;
 
 /*DESTINATION PAGE*/
 
-.container_2{
-
+.content_area h2{
+font-weight: 400;
+font-size: 30px;
 }
+
+.content_area h3{
+color: #747474;
+font-weight: 300;
+font-size: 20px;
+font-style: avenir;
+}
+
+.content_area #nights{
+  color: #000;
+}
+
+.content_area h4{
+font-size: 18px;
+}
+
+.content_area h5{
+font-size: 16px;
+color: #747474;
+font-weight: 300;
+}
+
+
+
+.info-left {
+  border-right: 2px dashed #333;
+}
+
 
 
 .top-left {
   position: absolute;
-  top: 6px;
-  left: 6px;
+  top: 0px;
+  left: 0px;
 }
 
 .bottom-left {
@@ -47,6 +76,14 @@ border-radius: 50px 50px 50px 50px;
   bottom: 0px;
   left: 0px;
 }
+
+
+
+/*STJÄRNOR*/
+#rating{
+color: #FFD45F
+}
+
 
 
 /*BILD PÅ DESTINATION/HOTELL*/
@@ -59,18 +96,9 @@ border-radius: 50px 50px 50px 50px;
 }
 
 
-.content_area h2{
-font-weight: 400;
-font-size: 30px;
-}
 
-.content_area h3{
-color: #747474;
-font-weight: 300;
-font-size: 20px;
-font-style: avenir;
 
-}
+
 
 
 
