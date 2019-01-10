@@ -31,16 +31,22 @@ function extractFacts(hotel) { //kan vara onödig
   $('#rating').text(hotel['rating']);
   var hotelLat = hotel['geometry']['location']['lat'];
   var hotelLong = hotel['geometry']['location']['lng'];
+  console.log(hotelLat);
+  console.log(hotelLong);
   //hantera 0 om den är undefined, ha en hårdkodad bild
+  if (typeof hotel['photos'] == "undefined" ) {
+    console.log("finns ej bilder");
+} else {
   var imageRef = hotel['photos']['0']['photo_reference'];
+}
+
   var placeID = hotel['place_id'];
   displayInfo(hotelLat, hotelLong);
   getLocation(placeID);
 
   //$('#destination-img').html('<img src="' + photoref+'">');
   console.log(placeID);
-  console.log(hotelLat);
-  console.log(hotelLong);
+//console.log(hotel['photos']['0']['photo_reference']);
 
 //  getPicture(imageRef);
 }
@@ -81,13 +87,15 @@ function getLocation(placeID) {
     var webpage = data['result']['website'];
     var address = data['result']['plus_code']['compound_code'];
 
-    console.log(address);
-//    displayCountry(address);
-    console.log(webpage);
+  //  console.log(address);
+    displayCountry(address);
+    //console.log(webpage);
     //länka knappen till hemsidan
   });
 }
 
 function displayCountry(addresscode) {
-
+  var str = addresscode.split(',');
+  var country = str[str.length-1];
+  console.log(country);
 }
