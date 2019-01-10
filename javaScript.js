@@ -34,7 +34,8 @@ function extractFacts(hotel) { //kan vara onödig
   var hotelLat = hotel['geometry']['location']['lat'];
   var hotelLong = hotel['geometry']['location']['lng'];
   var image = hotel['photos'];
-  //$('#city').text(hotel['name']);
+  $('#hotel').text(hotel['name']);
+
   //var photoref = image[0];
   //$('#destination-img').html('<img src="' + photoref+'">');
   console.log(image);
