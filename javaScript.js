@@ -33,7 +33,8 @@ function extractFacts(hotel) { //kan vara onödig
   var hotelRating = hotel['rating'];
   var hotelLat = hotel['geometry']['location']['lat'];
   var hotelLong = hotel['geometry']['location']['lng'];
-  $('#img-fluid').html('<img src="' + hotel['photos']['photo_reference']+'">');
+//  var image = hotel['photos'];
+  $('#destination-img').html('<img src="' + hotel['photos']+'">');
   console.log(image);
   console.log(hotelRating);
   console.log(hotelName);
@@ -71,5 +72,3 @@ function getContinent(lat, long) {
 
   });
 }
-
-function
