@@ -26,11 +26,11 @@
   <script>
     $(document).ready(function() {
       getCoordinates();
-      //Player.init(Player.areas.EUROPE, document.getElementById('player-source'));
+      Player.init(Player.areas.EUROPE, document.getElementById('player-source'));
 
-      //$('#nextTrack').on('click', function() {
-      //  Player.nextTrack();
-      //});
+      $('#nextTrack').on('click', function() {
+        Player.nextTrack();
+      });
     });
     </script>
 
@@ -41,79 +41,72 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 
+
+
+
 </head>
 <!--END OF HEAD-->
 <!--BODY-->
-<script>
-  $(document).ready(function() {
-    getCoordinates();
-    //Player.init(Player.areas.EUROPE, document.getElementById('player-source'));
-
-    //$('#nextTrack').on('click', function() {
-    //  Player.nextTrack();
-    //});
-  });
-  </script>
 
 <body>
-
   <div class="d-md-flex h-md-100 align-items-center">
-
     <!-- VÄNSTER HALVA MED INFO-->
-
     <div class="col-md-4 p-0 h-md-100">
-
-
 
       <div class="container_2">
 
-        <img src="img/img_2.jpg" id="destination-img" class="img-fluid" alt="Responsive image">
+        <!--BILD PÅ HOTELL (bild högst upp till vänster)-->
+        <img src="img/no_img.jpg" id="destination-img" class="img-fluid" alt="Responsive image">
 
-
-
+        <!--X close button-->
         <div class="top-left">
-
           <div class="col"><button type="button" class="close float-left" onclick="changeWindow();" aria-label="Close" style="font-size:40px;">
               <span aria-hidden="true">&times;</span>
             </button></div>
-
-
         </div>
       </div>
-
+      <!--TEXT INFO-->
       <div class="d-md-flex p-4">
         <div class="content_area">
-          <h2 id="city">Los Angeles</h2>
-          <h3 id="country">California, USA</h3>
+          <!--CITY-->
+          <h2 id="city">City</h2>
+          <!--COUNTRY-->
+          <h3 id="country">Country</h3>
           <br>
-
 
           <div class="row">
             <div id="info-left" class="col">
               <!--HOTELLNAMN-->
-              <h4 id="hotel">Hotel Name Lorem Ipsum</h4>
+              <h4 id="hotel">Hotel Name Lorem </h4>
               <br>
+              <!--HOTELL RATING-->
               <h5>Hotel rating</h5>
-              <div id="rating">★ ★ ★ ★ ★</div>
+              <p id="rating">★ ★ ★ ★ ★</p>
             </div>
             <div id="info-right" class="col">
 
-              PRISPRISPRISPRIS
+
+              <br>
+              <h6>Redirects to external page</h6>
+              <!--PROCEED BUTTON-->
+              <a id="proceed-btn" class="btn btn-primary" href="#" role="button">Proceed to hotel page</a>
 
             </div>
           </div>
 
+
         </div>
       </div>
 
+      <!--SPOTIFY WIDGET-->
 
     <!--  <div class="bottom-left">
->>>>>>> 13d72b5bd165c6c8f46e89580f3eb5c3df1d81e5
         <div id="spotify-player">
-          <!--<iframe src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          <iframe src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
         </div>
-      </div>-->
+      </div>
 
+-->
 
 
       <div id="accordion" class="panel-group">
@@ -149,12 +142,15 @@
             </div>
             <div id="panelBodyThree" class="panel-collapse collapse">
             <div class="panel-body">
-                <p>Energistically drive standardized communities through user friendly results. Phosfluorescently initiate superior technologies vis-a-vis low-risk high-yield solutions. Objectively facilitate clicks-and-mortar partnerships vis-a-vis superior partnerships.</p>
+                <p>Energistically drive standardized communities through user friendly results. Phosfluorescently initiate superior technologies vis-a-vis low-risk high-yield solutions. Objectively facilitate clicks-and-mortar partnerships vis-a-vis superior partnerships.Energistically drive standardized communities through user friendly results. Phosfluorescently initiate superior technologies vis-a-vis low-risk high-yield solutions. Objectively facilitate clicks-and-mortar partnerships vis-a-vis superior partnerships.Energistically drive standardized communities through user friendly results. Phosfluorescently initiate superior technologies vis-a-vis low-risk high-yield solutions. Objectively facilitate clicks-and-mortar partnerships vis-a-vis superior partnerships.</p>
               </div>
             </div>
           </div>
         </div>
-      </div>
+
+
+
+
     </div>
 
 
