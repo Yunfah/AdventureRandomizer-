@@ -42,7 +42,7 @@ function extractFacts(hotel) { //kan vara onödig
   console.log(hotelLat);
   console.log(hotelLong);
 
-  getPicture(imageRef);
+//  getPicture(imageRef);
 }
 
 function changeWindow() {
@@ -82,7 +82,7 @@ function getLocation(placeID) {
     var address = data['result']['plus_code']['compound_code'];
 
     console.log(address);
-    displayCountry(address);
+//    displayCountry(address);
     console.log(webpage);
     //länka knappen till hemsidan
   });
