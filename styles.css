@@ -42,7 +42,15 @@ border-radius: 50px 50px 50px 50px;
   left: 6px;
 }
 
-.container_2 .img-fluid{
+.bottom-left {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+
+
+/*BILD PÅ DESTINATION/HOTELL*/
+.container_2 #destination-img{
   object-fit: none; /* Do not scale the image */
   object-position: center; /* Center the image within the element */
   width: 100%;
@@ -57,9 +65,16 @@ font-size: 30px;
 }
 
 .content_area h3{
-
+color: #747474;
+font-weight: 300;
+font-size: 20px;
+font-style: avenir;
 
 }
+
+
+
+
 
 
 
