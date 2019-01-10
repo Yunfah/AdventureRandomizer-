@@ -60,18 +60,6 @@ function displayInfo(hotelLat, hotelLong, hotelName, hotelRating) {
   //Uppdatera vänstra delen av med namn, bild??, rating, stad, land
 }
 
-//function getContinent(lat, long) {
-//  $.ajax({
-//    url: "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+long+"&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
-//    headers: {"Accept": "application/json"}
-//  })
-//  .done(function(data) {
-//    var addresses = data['results'];
-//    console.log(addresses);
-//
-//  });
-//}
-
 function getPicture(imageRef) {
   $.ajax({
     url: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+imageRef+"&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo ",
