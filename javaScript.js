@@ -34,14 +34,16 @@ function extractFacts(hotel) { //kan vara onödig
   var hotelLat = hotel['geometry']['location']['lat'];
   var hotelLong = hotel['geometry']['location']['lng'];
   var image = hotel['photos'];
-//  $('#destination-img').html('<img src="' + hotel['photos']+'">');
+  $('#city').text(hotel['name']);
+  //var photoref = image[0];
+  //$('#destination-img').html('<img src="' + photoref+'">');
   console.log(image);
+  //console.log(photoref);
   console.log(hotelRating);
   console.log(hotelName);
   console.log(hotelLat);
   console.log(hotelLong);
   displayInfo(hotelLat, hotelLong, hotelName, hotelRating);
-  getContinent(hotelLat, hotelLong);
 }
 
 function changeWindow() {
@@ -56,18 +58,18 @@ function placeMarker(hotelLat, hotelLong) {
 
 function displayInfo(hotelLat, hotelLong, hotelName, hotelRating) {
   placeMarker(hotelLat, hotelLong);
+  getContinent(hotelLat, hotelLong);
   //Uppdatera vänstra delen av med namn, bild??, rating, stad, land
 }
 
 function getContinent(lat, long) {
   $.ajax({
-    url: "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+long+"&result_type=locality&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
+    url: "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+long+"&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
     headers: {"Accept": "application/json"}
   })
   .done(function(data) {
 
-    var addresses = data['results']['address_components'];
-    console.log('hej');
+    var addresses = data['results'];
     console.log(addresses);
 
   });
