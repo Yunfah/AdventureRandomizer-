@@ -17,7 +17,7 @@ function getHotels(long, lat) {
       if(data['results'] == 0) {
         getCoordinates();
       } else {
-        var hotelAmount = data['results'].length;
+        //var hotelAmount = data['results'].length;
         randomizeHotel(data['results']);
       }
     });
@@ -31,15 +31,16 @@ function randomizeHotel(hotels) {
 function extractFacts(hotel) { //kan vara onödig
   var hotelName = hotel['name'];
   var hotelRating = hotel['rating'];
-  var address = hotel['vicinity'];
   var hotelLat = hotel['geometry']['location']['lat'];
   var hotelLong = hotel['geometry']['location']['lng'];
+  var image = hotel['photos']['photo_reference'];
+  getContinent(hotelLat, hotelLong);
   console.log(hotelRating);
   console.log(address);
   console.log(hotelName);
   console.log(hotelLat);
   console.log(hotelLong);
-  displayInfo(hotelLat, hotelLong);
+  displayInfo(hotelLat, hotelLong, hotelName, hotelRating);
 }
 
 function changeWindow() {
@@ -52,7 +53,19 @@ function placeMarker(hotelLat, hotelLong) {
   var marker = new google.maps.Marker({position: location, map: map});
 }
 
-function displayInfo(hotelLat, hotelLong) {
+function displayInfo(hotelLat, hotelLong, hotelName, hotelRating) {
   placeMarker(hotelLat, hotelLong);
   //Uppdatera vänstra delen av med namn, bild??, rating, stad, land
+}
+
+function getContinent(lat, long) {
+  $.ajax({
+    url: "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+long+"12.9977991&result_type=locality&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
+    headers: {"Accept": "application/json"}
+  })
+  .done(function(data) {
+    var addresses = data['results']['address_components'];
+    console.log(addresses);
+
+  });
 }
