@@ -33,18 +33,14 @@ border-radius: 50px 50px 50px 50px;
 
 #proceed-btn{
 background-color: #39C881;
+font-size: 14px;
 border: 0px;
-padding: 10px 30px 10px 30px;
+padding: 10px 15px 10px 15px;
 }
 
 .content_area h2{
 font-weight: 400;
 font-size: 30px;
-}
-
-.content_area #price{
-color: #39C881;
-font-weight: 300;
 }
 
 .content_area h3{
@@ -54,9 +50,6 @@ font-size: 20px;
 font-style: avenir;
 }
 
-.content_area #nights{
-color: #000;
-}
 
 .content_area h4{
 font-size: 18px;
@@ -64,6 +57,13 @@ font-size: 18px;
 
 .content_area h5{
 font-size: 16px;
+color: #747474;
+font-weight: 300;
+}
+
+
+.content_area h6{
+font-size: 13px;
 color: #747474;
 font-weight: 300;
 }
