@@ -33,14 +33,14 @@ function extractFacts(hotel) { //kan vara onödig
   var hotelRating = hotel['rating'];
   var hotelLat = hotel['geometry']['location']['lat'];
   var hotelLong = hotel['geometry']['location']['lng'];
-  var image = hotel['photos']['photo_reference'];
-  getContinent(hotelLat, hotelLong);
+  $('#img-fluid').html('<img src="' + hotel['photos']['photo_reference']+'">');
+  console.log(image);
   console.log(hotelRating);
-  console.log(address);
   console.log(hotelName);
   console.log(hotelLat);
   console.log(hotelLong);
   displayInfo(hotelLat, hotelLong, hotelName, hotelRating);
+  getContinent(hotelLat, hotelLong);
 }
 
 function changeWindow() {
@@ -60,12 +60,16 @@ function displayInfo(hotelLat, hotelLong, hotelName, hotelRating) {
 
 function getContinent(lat, long) {
   $.ajax({
-    url: "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+long+"12.9977991&result_type=locality&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
+    url: "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+long+"&result_type=locality&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
     headers: {"Accept": "application/json"}
   })
   .done(function(data) {
+
     var addresses = data['results']['address_components'];
+    console.log('hej');
     console.log(addresses);
 
   });
 }
+
+function
