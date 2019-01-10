@@ -33,8 +33,8 @@ function extractFacts(hotel) { //kan vara onödig
   var hotelRating = hotel['rating'];
   var hotelLat = hotel['geometry']['location']['lat'];
   var hotelLong = hotel['geometry']['location']['lng'];
-//  var image = hotel['photos'];
-  $('#destination-img').html('<img src="' + hotel['photos']+'">');
+  var image = hotel['photos'];
+//  $('#destination-img').html('<img src="' + hotel['photos']+'">');
   console.log(image);
   console.log(hotelRating);
   console.log(hotelName);
