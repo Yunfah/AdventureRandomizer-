@@ -90,7 +90,15 @@ function getLocation(placeID) {
   })
   .done(function(data) {
     var webpage = data['result']['website'];
+    var address = data['result']['plus_code']['compound_code'];
+
+    console.log(address);
+    displayCountry(address);
     console.log(webpage);
     //länka knappen till hemsidan
   });
+}
+
+function displayCountry(addresscode) {
+
 }
