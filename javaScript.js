@@ -10,14 +10,12 @@ function getCoordinates() {
 function getHotels(long, lat) {
     $.ajax({
       url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+lat+","+long+"&radius=50000&type=lodging&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
-      //url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?latlng="+lat+","+long+"&result_type=locality&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
       headers: {"Accept": "application/json"}
     })
     .done(function(data) {
       if(data['results'] == 0) {
         getCoordinates();
       } else {
-        //var hotelAmount = data['results'].length;
         randomizeHotel(data['results']);
       }
     });
@@ -29,19 +27,21 @@ function randomizeHotel(hotels) {
 }
 
 function extractFacts(hotel) { //kan vara onödig
-  var hotelName = hotel['name'];
-  var hotelRating = hotel['rating'];
+  $('#hotel').text(hotel['name']);
+  $('#rating').text(hotel['rating']);
   var hotelLat = hotel['geometry']['location']['lat'];
   var hotelLong = hotel['geometry']['location']['lng'];
-  var image = hotel['photos'];
-//  $('#destination-img').html('<img src="' + hotel['photos']+'">');
-  console.log(image);
-  console.log(hotelRating);
-  console.log(hotelName);
+  //hantera 0 om den är undefined, ha en hårdkodad bild
+  var imageRef = hotel['photos']['0']['photo_reference'];
+  var placeID = hotel['place_id'];
+  getLocation(placeID);
+
+  //$('#destination-img').html('<img src="' + photoref+'">');
+  console.log(placeID);
   console.log(hotelLat);
   console.log(hotelLong);
-  displayInfo(hotelLat, hotelLong, hotelName, hotelRating);
-  getContinent(hotelLat, hotelLong);
+  displayInfo(hotelLat, hotelLong);
+  getPicture(imageRef);
 }
 
 function changeWindow() {
@@ -56,19 +56,37 @@ function placeMarker(hotelLat, hotelLong) {
 
 function displayInfo(hotelLat, hotelLong, hotelName, hotelRating) {
   placeMarker(hotelLat, hotelLong);
+//  getContinent(hotelLat, hotelLong);
   //Uppdatera vänstra delen av med namn, bild??, rating, stad, land
 }
 
-function getContinent(lat, long) {
+function getPicture(imageRef) {
   $.ajax({
-    url: "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+long+"&result_type=locality&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
+    url: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+imageRef+"&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo ",
     headers: {"Accept": "application/json"}
   })
   .done(function(data) {
-
-    var addresses = data['results']['address_components'];
-    console.log('hej');
-    console.log(addresses);
-
+    var image = data;
+      $('#destination-img').html('<img src="' + image+'">');
   });
+}
+
+function getLocation(placeID) {
+  $.ajax({
+    url: "https://maps.googleapis.com/maps/api/place/details/json?placeid="+placeID+"&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
+    headers: {"Accept": "application/json"}
+  })
+  .done(function(data) {
+    var webpage = data['result']['website'];
+    var address = data['result']['plus_code']['compound_code'];
+
+    console.log(address);
+    displayCountry(address);
+    console.log(webpage);
+    //länka knappen till hemsidan
+  });
+}
+
+function displayCountry(addresscode) {
+
 }

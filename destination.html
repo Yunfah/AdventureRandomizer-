@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <title>Destination</title>
+
   <script>
     function initMap() {
       var location = {lat: 0, lng: 0};
@@ -42,30 +43,44 @@
 
 
 
-
-
 </head>
 <!--END OF HEAD-->
 <!--BODY-->
+<script>
+  $(document).ready(function() {
+    getCoordinates();
+    //Player.init(Player.areas.EUROPE, document.getElementById('player-source'));
+
+    //$('#nextTrack').on('click', function() {
+    //  Player.nextTrack();
+  });
+  </script>
 
 <body>
+
   <div class="d-md-flex h-md-100 align-items-center">
+
     <!-- VÄNSTER HALVA MED INFO-->
+
     <div class="col-md-4 p-0 h-md-100">
+
+
 
       <div class="container_2">
 
         <!--BILD PÅ HOTELL (bild högst upp till vänster)-->
         <img src="img/no_img.jpg" id="destination-img" class="img-fluid" alt="Responsive image">
 
-        <!--X close button-->
         <div class="top-left">
+
           <div class="col"><button type="button" class="close float-left" onclick="changeWindow();" aria-label="Close" style="font-size:40px;">
               <span aria-hidden="true">&times;</span>
             </button></div>
+
+
         </div>
       </div>
-      <!--TEXT INFO-->
+
       <div class="d-md-flex p-4">
         <div class="content_area">
           <!--CITY-->
@@ -74,22 +89,19 @@
           <h3 id="country">Country</h3>
           <br>
 
+
           <div class="row">
             <div id="info-left" class="col">
               <!--HOTELLNAMN-->
               <h4 id="hotel">Hotel Name</h4>
+
               <br>
-              <!--HOTELL RATING-->
               <h5>Hotel rating</h5>
-              <p id="rating">★ ★ ★ ★ ★</p>
+              <div id="rating">★ ★ ★ ★ ★</div>
             </div>
             <div id="info-right" class="col">
 
-
-              <br>
-              <h6>Redirects to external page</h6>
-              <!--PROCEED BUTTON-->
-              <a id="proceed-btn" class="btn btn-primary" href="#" role="button">Proceed to hotel page</a>
+              <a id="proceed-btn" class="btn btn-primary" href="#" role="button">Proceed to ???</a>
 
             </div>
           </div>
@@ -102,11 +114,9 @@
 
     <!--  <div class="bottom-left">
         <div id="spotify-player">
-          <iframe src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          <!--<iframe src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
         </div>
-      </div>
-
--->
+      </div>-->
 
 
       <div id="accordion" class="panel-group">
