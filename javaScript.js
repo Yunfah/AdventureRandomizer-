@@ -56,37 +56,3 @@ function displayInfo(hotelLat, hotelLong) {
   placeMarker(hotelLat, hotelLong);
   //Uppdatera vänstra delen av med namn, bild??, rating, stad, land
 }
-
-function getHotelInfo() { //eventuellt för att hämta bild, och land/stad
-  $.ajax({
-    url:
-
-    headers: {"Accept": "application/json"}
-  })
-  .done(function(data) {
-
-
-  });
-}
-
-function getAttractions() { //hämta sevärdheter i närheten, samt lägg dem i en lista
-  $.ajax({
-    url:
-
-    headers: {"Accept": "application/json"}
-  })
-  .done(function(data) {
-
-  });
-}
-
-function getMusic(continent) { //beroende på kontinent, hämta hem och spela upp rätt musik
-  $.ajax({
-    url:
-
-    headers: {"Accept": "application/json"}
-  })
-  .done(function(data) {
-
-  });
-}
