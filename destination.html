@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" type="text/css" href="styles.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
+  <title>Destination</title>
   <script>
     function initMap() {
       var location = {lat: 0, lng: 0};
@@ -20,6 +20,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="javaScript.js"></script>
   <script src="Player.js"></script>
+<<<<<<< HEAD
   <title>Destination</title>
 </head>
 <!--END OF HEAD-->
@@ -33,38 +34,47 @@
     //  Player.nextTrack();
   });
   </script>
+=======
 
+
+  <script>
+    $(document).ready(function() {
+      getCoordinates();
+      Player.init(Player.areas.EUROPE, document.getElementById('player-source'));
+
+      $('#nextTrack').on('click', function() {
+        Player.nextTrack();
+      });
+    });
+    </script>
+>>>>>>> f957594428d911a82721c52f5e149d87f47110d7
+
+</head>
+<!--END OF HEAD-->
+<!--BODY-->
 <body>
-
   <div class="d-md-flex h-md-100 align-items-center">
-
     <!-- VÄNSTER HALVA MED INFO-->
-
     <div class="col-md-4 p-0 h-md-100">
-
-
 
       <div class="container_2">
 
+<!--BILD PÅ HOTELL (bild högst upp till vänster)-->
         <img src="img/img_2.jpg" id="destination-img" class="img-fluid" alt="Responsive image">
 
-
+<!--X button-->
         <div class="top-left">
-
           <div class="col"><button type="button" class="close float-left" onclick="changeWindow();" aria-label="Close" style="font-size:40px;">
               <span aria-hidden="true">&times;</span>
             </button></div>
-
-
         </div>
       </div>
-
+<!--TEXT INFO-->
       <div class="d-md-flex p-4">
         <div class="content_area">
           <h2 id="city">Los Angeles</h2>
           <h3 id="country">California, USA</h3>
           <br>
-
 
           <div class="row">
             <div id="info-left" class="col">
@@ -76,11 +86,15 @@
 
               <br>
               <h5>Hotel rating</h5>
-              <div id="rating">★ ★ ★ ★ ★</div>
+              <p id="rating">★ ★ ★ ★ ★</p>
             </div>
             <div id="info-right" class="col">
 
-              PRISPRISPRISPRIS
+              <h2 id="price">11599 SEK</h2>
+
+              <h5>/1 room for 4 nights</h5>
+
+              <a id="proceed-btn" class="btn btn-primary" href="#" role="button">Proceed to ???</a>
 
             </div>
           </div>
@@ -88,7 +102,7 @@
         </div>
       </div>
 
-
+<!--SPOTIFY WIDGET-->
       <div class="bottom-left">
         <div id="spotify-player">
           <iframe src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
