@@ -29,25 +29,20 @@
 function extractFacts(hotel) { //kan vara onödig
   $('#hotel').text(hotel['name']);
   $('#rating').text(hotel['rating']);
+  
   var hotelLat = hotel['geometry']['location']['lat'];
   var hotelLong = hotel['geometry']['location']['lng'];
   //hantera 0 om den är undefined, ha en hårdkodad bild
-  if (typeof hotel['photos'] == "undefined" ) {
-      console.log("finns ej bilder");
-  } else {
-    var imageRef = hotel['photos']['0']['photo_reference'];
-  }
+  
   //var imageRef = hotel['photos'];
   var placeID = hotel['place_id'];
-  if(imageRef !== null) {
-    getPicture(imageRef);
-  }
+  
   displayInfo(hotelLat, hotelLong);
   getLocation(placeID);
 //  console.log(placeID);
 //  console.log(hotelLat);
 //  console.log(hotelLong);
-  console.log(imageRef);
+//  console.log(imageRef);
 
 }
 
@@ -69,6 +64,7 @@ function extractFacts(hotel) { //kan vara onödig
   }
 
 function getPicture(imageRef) {
+  
   $.ajax({
     url: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+imageRef+"&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo ",
     headers: {"Accept": "application/json"}
@@ -76,7 +72,9 @@ function getPicture(imageRef) {
   .done(function(data) {
     var imageUrl = data;
     //vi behöver urlen, inte själva bilden?
-      $('#destination-img').html('<img src="'+ imageUrl+'">');
+      //$('#destination-img').attr("src", 'https://lh3.googleusercontent.com/p/AF1QipOQKkwxxN6HT77m8yRVGjdn0xPi37epitGtWQer=s1600-w400');
+      document.getElementById("destination-img").src= " "; // kolla igenom 
+      
   });
 }
 
@@ -87,6 +85,15 @@ function getLocation(placeID) {
   })
   .done(function(data) {
     var webpage = data['result']['website'];
+    
+    if (typeof data['result']['photos'] == "undefined" ) {
+      console.log("finns ej bilder");
+  } else {
+   
+    var imageRef = data['result']['photos']['0']['photo_reference'];
+    console.log(imageRef);
+    getPicture(imageRef);
+  }
     if(webpage == null){
       document.getElementById("proceed-btn").innerHTML="Hotel does not have webpage";
       console.log('disabled');
@@ -107,10 +114,36 @@ function displayCountry(arr) {
    var obj = null;
    for(var i=0; i<arr.length;i++) {
      obj = arr[i];
-     if(obj.types['0'] == 'country') {
-          console.log(obj.long_name);
-          console.log(obj.short_name);
-
+      if(obj.types['0'] == 'postal_town') {
+        console.log(obj.long_name + " locality");
+        $('#city').text(obj.long_name);
+        break;
+    }
+      if(obj.types['0'] == 'locality') {
+        console.log(obj.long_name + " locality");
+        $('#city').text(obj.long_name);
+        break;
       }
+      if(obj.types['0'] == 'administrative_area_level_3') {
+        console.log(obj.long_name + " lvl 3");
+        $('#city').text(obj.long_name);
+        break;
+      }
+      if(obj.types['0'] == 'administrative_area_level_2') {
+        console.log(obj.long_name + " lvl 2");
+        $('#city').text(obj.long_name);
+        break;
+      }
+      
+    }
+    for(var i=0; i<arr.length;i++) {
+      obj = arr[i];
+      if(obj.types['0'] == 'country') {
+           console.log(obj.long_name);
+           console.log(obj.short_name);
+           $('#country').text(obj.long_name);
+       } 
+    }
+      
    }
- }
+ 
