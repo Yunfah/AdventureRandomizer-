@@ -6,7 +6,6 @@ font-family: 'avenir';
 
 /*RANDOMIZER PAGE*/
 .jumbotron {
-  background-image: url("img/img_1.jpg");
   background-size: cover;
   height: 100vh;
   color: white;
@@ -200,6 +199,11 @@ min-width: 200px;
   max-height: 180px;
 }
 
+
+/*SPOTIFY PLAYER*/
+#spotify-player{
+  padding-top: 2px;
+}
 
 
 /*MAP*/
