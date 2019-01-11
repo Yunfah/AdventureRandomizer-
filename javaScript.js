@@ -1,3 +1,5 @@
+  let myjqxhr;
+  let myjqxhrRespHeads;
 
   //Longitude: -180 to +180, toFixed() decides the amount of decimals
   //Latitude: -90 to +90, toFixed() decides the amount of decimals
@@ -18,7 +20,7 @@
         } else {
           randomizeHotel(data['results']);
         }
-      });
+      })
   }
 
   function randomizeHotel(hotels) {
@@ -42,8 +44,8 @@ function extractFacts(hotel) { //kan vara onödig
   if(imageRef !== null) {
     getPicture(imageRef);
   }
-  displayInfo(hotelLat, hotelLong);
-  getLocation(placeID);
+  //displayInfo(hotelLat, hotelLong);
+  //getLocation(placeID);
 //  console.log(placeID);
 //  console.log(hotelLat);
 //  console.log(hotelLong);
@@ -69,15 +71,27 @@ function extractFacts(hotel) { //kan vara onödig
   }
 
 function getPicture(imageRef) {
+  console.log('Getting picture: ' + imageRef);
+      // $('#destination-img').html('<img src="toto">');
+
   $.ajax({
     url: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+imageRef+"&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo ",
-    headers: {"Accept": "application/json"}
+    headers: {"Accept": "application/json"},
+    dataType: 'image/jpg'
   })
-  .done(function(data) {
-    var imageUrl = data;
+  .done(function(data, textstatus, jqXHR) {
+    console.log('Response: recieved', this.url);
+    myjqxhr = data;
+    // var imageUrl = data;
     //vi behöver urlen, inte själva bilden?
-      $('#destination-img').html('<img src="'+ imageUrl+'">');
-  });
+     $('#destination-img').html(<img src="data:image/gif;UTF-8,",data.responseText/>);
+  })
+  .fail(function(jqXHR, status, error) {
+    console.log('Response: error', this.url);
+    myjqxhr = jqXHR;
+  }
+
+  );
 }
 
 function getLocation(placeID) {
@@ -86,6 +100,7 @@ function getLocation(placeID) {
     headers: {"Accept": "application/json"}
   })
   .done(function(data) {
+    console.log('rad 91');
     var webpage = data['result']['website'];
     if(webpage == null){
       document.getElementById("proceed-btn").innerHTML="Hotel does not have webpage";
@@ -96,7 +111,6 @@ function getLocation(placeID) {
       console.log(webpage);
     }
     var address = data['result']['address_components'];
-    console.log(address);
     displayCountry(address);
 
     //länka knappen till hemsidan
@@ -108,9 +122,11 @@ function displayCountry(arr) {
    for(var i=0; i<arr.length;i++) {
      obj = arr[i];
      if(obj.types['0'] == 'country') {
+         console.log(obj.long_name);
+      }
+      if(obj.types['0'] == 'postal_town') {
           console.log(obj.long_name);
-          console.log(obj.short_name);
-
+          console.log('blabla stad');
       }
    }
  }
