@@ -32,22 +32,16 @@ function extractFacts(hotel) { //kan vara onödig
   var hotelLat = hotel['geometry']['location']['lat'];
   var hotelLong = hotel['geometry']['location']['lng'];
   //hantera 0 om den är undefined, ha en hårdkodad bild
-  if (typeof hotel['photos'] == "undefined" ) {
-      console.log("finns ej bilder");
-  } else {
-    var imageRef = hotel['photos']['0']['photo_reference'];
-  }
+  
   //var imageRef = hotel['photos'];
   var placeID = hotel['place_id'];
-  if(imageRef !== null) {
-    getPicture(imageRef);
-  }
+  
   displayInfo(hotelLat, hotelLong);
   getLocation(placeID);
 //  console.log(placeID);
 //  console.log(hotelLat);
 //  console.log(hotelLong);
-  console.log(imageRef);
+//  console.log(imageRef);
 
 }
 
@@ -69,14 +63,18 @@ function extractFacts(hotel) { //kan vara onödig
   }
 
 function getPicture(imageRef) {
+  
   $.ajax({
     url: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+imageRef+"&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo ",
     headers: {"Accept": "application/json"}
   })
   .done(function(data) {
     var imageUrl = data;
+    console.log(data);
     //vi behöver urlen, inte själva bilden?
-      $('#destination-img').html('<img src="'+ imageUrl+'">');
+      $('#destination-img').html('<img src="'+ imageUrl +'">');
+      
+      
   });
 }
 
@@ -87,6 +85,15 @@ function getLocation(placeID) {
   })
   .done(function(data) {
     var webpage = data['result']['website'];
+    
+    if (typeof data['result']['photos'] == "undefined" ) {
+      console.log("finns ej bilder");
+  } else {
+   
+    var imageRef = data['result']['photos']['0']['photo_reference'];
+    console.log(imageRef);
+    getPicture(imageRef);
+  }
     if(webpage == null){
       document.getElementById("proceed-btn").innerHTML="Hotel does not have webpage";
       console.log('disabled');
