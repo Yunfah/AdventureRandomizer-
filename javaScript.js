@@ -50,7 +50,7 @@ function extractFacts(hotel) { //kan vara onödig
   console.log(imageRef);
 
 }
-   
+
 
   function changeWindow() {
     window.location.pathname = '/index.html';
@@ -111,6 +111,6 @@ function displayCountry(arr) {
           console.log(obj.long_name);
           console.log(obj.short_name);
 
-      }    
+      }
    }
  }

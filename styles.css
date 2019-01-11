@@ -29,13 +29,39 @@ border-radius: 50px 50px 50px 50px;
 }
 
 
+#randomizer-btn:hover{
+background-color: #281E52;
+transition: all 0.2s ease-in;
+}
+
+
+
 /*DESTINATION PAGE*/
+
+#randomizer-panel-btn{
+background-color: #6759A3 !important;
+border-radius: 0px;
+border: 0px;
+}
+
+
+#randomizer-panel-btn:hover{
+background-color: #281E52 !important;
+transition: all 0.2s ease-in;
+}
 
 #proceed-btn{
 background-color: #39C881;
 border: 0px;
 padding: 10px 30px 10px 30px;
 }
+
+#proceed-btn:hover{
+background-color: #00A653;
+transition: all 0.2s ease-in;
+}
+
+
 
 
 .content_area h2{
@@ -118,7 +144,7 @@ min-width: 200px;
 /*accordion hover*/
 #accordion .panel-heading a.collapsed:hover,
 #accordion .panel-heading a.collapsed:focus {
-  background-color: #6759A3;
+  background-color: #929292;
   color: white;
   transition: all 0.2s ease-in;
 }
@@ -133,7 +159,7 @@ min-width: 200px;
 }
 #accordion .panel-heading a:not(.collapsed) {
   color: white;
-  background-color: #6759A3;
+  background-color: #929292;
   transition: all 0.2s ease-in;
 }
 
