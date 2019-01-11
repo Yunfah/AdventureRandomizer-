@@ -33,16 +33,25 @@ function extractFacts(hotel) { //kan vara onödig
   var hotelLong = hotel['geometry']['location']['lng'];
   //hantera 0 om den är undefined, ha en hårdkodad bild
   var imageRef = hotel['photos']['0']['photo_reference'];
+  var htmlAttr = hotel['photos']["html_attributions"];
+  if(htmlAttr == null) {
+    console.log('hej');
+  } else {
+    console.log(htmlAttr);
+  }
+
+  //var imageRef = hotel['photos'];
   var placeID = hotel['place_id'];
+  if(imageRef !== null) {
+    getPicture(imageRef);
+  }
   displayInfo(hotelLat, hotelLong);
   getLocation(placeID);
+//  console.log(placeID);
+//  console.log(hotelLat);
+//  console.log(hotelLong);
+  console.log(imageRef);
 
-  //$('#destination-img').html('<img src="' + photoref+'">');
-  console.log(placeID);
-  console.log(hotelLat);
-  console.log(hotelLong);
-
-//  getPicture(imageRef);
 }
 
 function changeWindow() {
@@ -67,8 +76,9 @@ function getPicture(imageRef) {
     headers: {"Accept": "application/json"}
   })
   .done(function(data) {
-    var image = data;
-      $('#destination-img').html('<img src="' + image+'">');
+    var imageUrl = data;
+    //vi behöver urlen, inte själva bilden?
+      $('#destination-img').html('<img src="'+ imageUrl+'">');
   });
 }
 
@@ -79,11 +89,18 @@ function getLocation(placeID) {
   })
   .done(function(data) {
     var webpage = data['result']['website'];
+    if(webpage == null){
+      document.getElementById("proceed-btn").innerHTML="Hotel does not have webpage";
+      console.log('disabled');
+    } else {
+      $("#proceed-btn").removeAttr("disabled");
+      var butt = document.getElementById("proceed-btn").href=webpage;
+      console.log(webpage);
+    }
     var address = data['result']['plus_code']['compound_code'];
-
     console.log(address);
 //    displayCountry(address);
-    console.log(webpage);
+
     //länka knappen till hemsidan
   });
 }
