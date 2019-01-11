@@ -26,30 +26,31 @@
     extractFacts(hotel);
   }
 
-  function extractFacts(hotel) { //kan vara onödig
-    $('#hotel').text(hotel['name']);
-    $('#rating').text(hotel['rating']);
-    var hotelLat = hotel['geometry']['location']['lat'];
-    var hotelLong = hotel['geometry']['location']['lng'];
-    console.log(hotelLat);
-    console.log(hotelLong);
-    //hantera 0 om den är undefined, ha en hårdkodad bild
-    if (typeof hotel['photos'] == "undefined" ) {
+function extractFacts(hotel) { //kan vara onödig
+  $('#hotel').text(hotel['name']);
+  $('#rating').text(hotel['rating']);
+  var hotelLat = hotel['geometry']['location']['lat'];
+  var hotelLong = hotel['geometry']['location']['lng'];
+  //hantera 0 om den är undefined, ha en hårdkodad bild
+  if (typeof hotel['photos'] == "undefined" ) {
       console.log("finns ej bilder");
   } else {
     var imageRef = hotel['photos']['0']['photo_reference'];
   }
-
-    var placeID = hotel['place_id'];
-    displayInfo(hotelLat, hotelLong);
-    getLocation(placeID);
-
-    //$('#destination-img').html('<img src="' + photoref+'">');
-    console.log(placeID);
-  //console.log(hotel['photos']['0']['photo_reference']);
-
-  //  getPicture(imageRef);
+  //var imageRef = hotel['photos'];
+  var placeID = hotel['place_id'];
+  if(imageRef !== null) {
+    getPicture(imageRef);
   }
+  displayInfo(hotelLat, hotelLong);
+  getLocation(placeID);
+//  console.log(placeID);
+//  console.log(hotelLat);
+//  console.log(hotelLong);
+  console.log(imageRef);
+
+}
+
 
   function changeWindow() {
     window.location.pathname = '/index.html';
@@ -67,41 +68,49 @@
     //Uppdatera vänstra delen av med namn, bild??, rating, stad, land
   }
 
-  function getPicture(imageRef) {
-    $.ajax({
-      url: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+imageRef+"&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo ",
-      headers: {"Accept": "application/json"}
-    })
-    .done(function(data) {
-      var image = data;
-        $('#destination-img').html('<img src="' + image+'">');
-    });
-  }
+function getPicture(imageRef) {
+  $.ajax({
+    url: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+imageRef+"&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo ",
+    headers: {"Accept": "application/json"}
+  })
+  .done(function(data) {
+    var imageUrl = data;
+    //vi behöver urlen, inte själva bilden?
+      $('#destination-img').html('<img src="'+ imageUrl+'">');
+  });
+}
 
-  function getLocation(placeID) {
-    $.ajax({
-      url: "https://maps.googleapis.com/maps/api/place/details/json?placeid="+placeID+"&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
-      headers: {"Accept": "application/json"}
-    })
-    .done(function(data) {
-      var webpage = data['result']['website'];
-      var address = data['result']['address_components'];
+function getLocation(placeID) {
+  $.ajax({
+    url: "https://maps.googleapis.com/maps/api/place/details/json?placeid="+placeID+"&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
+    headers: {"Accept": "application/json"}
+  })
+  .done(function(data) {
+    var webpage = data['result']['website'];
+    if(webpage == null){
+      document.getElementById("proceed-btn").innerHTML="Hotel does not have webpage";
+      console.log('disabled');
+    } else {
+      $("#proceed-btn").removeAttr("disabled");
+      var butt = document.getElementById("proceed-btn").href=webpage;
+      console.log(webpage);
+    }
+    var address = data['result']['address_components'];
+    console.log(address);
+    displayCountry(address);
 
-    //  console.log(address);
-      displayCountry(address);
-      //console.log(webpage);
-      //länka knappen till hemsidan
-    });
-  }
+    //länka knappen till hemsidan
+  });
+}
 
-  function displayCountry(arr) {
-    var obj = null;
-    for(var i=0; i<arr.length;i++) {
-      obj = arr[i];
-      if(obj.types['0'] == 'country') {
-        console.log(obj.long_name);
-            console.log(obj.short_name);
+function displayCountry(arr) {
+   var obj = null;
+   for(var i=0; i<arr.length;i++) {
+     obj = arr[i];
+     if(obj.types['0'] == 'country') {
+          console.log(obj.long_name);
+          console.log(obj.short_name);
 
       }
-    }
-  }
+   }
+ }
