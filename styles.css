@@ -9,7 +9,7 @@ font-family: 'avenir';
   background-size: cover;
   height: 100vh;
   color: white;
-  margin: 0px 0px 0px 0px;
+  margin-bottom: 0px !important;
 }
 
 
