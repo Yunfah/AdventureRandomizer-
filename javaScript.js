@@ -191,13 +191,23 @@ function getRestaurant(hotelLat, hotelLong) {
       //console.log(data['results']);
       var obj = data['results']
       // show a list of restaurants if there are
-
+      var lat = null;
+      var lng =null;
       //TODO
       // Make  an error handling if there are no restaurants
+      if (obj === undefined || obj.length == 0) {
+    console.log('finns inga restauranger i närheten');
+} else{
       for (var i = 0; i < obj.length; i++) {
         //console.log(obj[i]['name']);
         $("#restList").append('<li>' + obj[i]['name'] + '</li>');
+        lat = obj[i]['geometry']['location']['lat'];
+        lng = obj[i]['geometry']['location']['lng'];
+        console.log(obj[i]['name'] + ': lat = ' +lat + ', lng = ' + lng);
       }
+    }
+
+
     });
 }
 function getArt(hotelLat, hotelLong) {
@@ -211,14 +221,23 @@ function getArt(hotelLat, hotelLong) {
     .done(function(data) {
       //console.log(data['results']);
       var obj = data['results']
+      var lat = null;
+      var lng =null;
       // show a list of restaurants if there are
 
       //TODO
       // Make  an error handling if there are no restaurants
+      if (obj === undefined || obj.length == 0) {
+    console.log('finns inga gallerier i närheten');
+} else{
       for (var i = 0; i < obj.length; i++) {
         //console.log(obj[i]['name']);
         $("#artList").append('<li>' + obj[i]['name'] + '</li>');
+        lat = obj[i]['geometry']['location']['lat'];
+        lng = obj[i]['geometry']['location']['lng'];
+        console.log(obj[i]['name'] + ': lat = ' +lat + ', lng = ' + lng);
       }
+    }
     });
 
 }
@@ -234,14 +253,23 @@ function getMuseums(hotelLat, hotelLong) {
     .done(function(data) {
       //console.log(data['results']);
       var obj = data['results']
+      var lat = null;
+      var lng =null;
       // show a list of restaurants if there are
 
       //TODO
       // Make  an error handling if there are no restaurants
+      if (obj === undefined || obj.length == 0) {
+    console.log('finns inga museum i närheten');
+} else{
       for (var i = 0; i < obj.length; i++) {
         //console.log(obj[i]['name']);
         $("#musList").append('<li>' + obj[i]['name'] + '</li>');
+        lat = obj[i]['geometry']['location']['lat'];
+        lng = obj[i]['geometry']['location']['lng'];
+        console.log(obj[i]['name'] + ': lat = ' +lat + ', lng = ' + lng);
       }
+    }
     });
 }
 
