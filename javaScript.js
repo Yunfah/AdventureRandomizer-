@@ -59,7 +59,6 @@ function extractFacts(hotel) { //kan vara onödig
 
   function displayInfo(hotelLat, hotelLong, hotelName, hotelRating) {
     placeMarker(hotelLat, hotelLong);
-  //  getContinent(hotelLat, hotelLong);
     //Uppdatera vänstra delen av med namn, bild??, rating, stad, land
   }
 
@@ -101,13 +100,13 @@ function getLocation(placeID) {
     }
     var address = data['result']['address_components'];
   //  console.log(address);
-    displayCountry(address);
+    displayCityAndCountry(address);
 
     //länka knappen till hemsidan
   });
 }
 
-function displayCountry(arr) {
+function displayCityAndCountry(arr) {
    var obj = null;
    for(var i=0; i<arr.length;i++) {
      obj = arr[i];
