@@ -5,6 +5,7 @@
     var long = (Math.random() * (-180 - 180) + 180).toFixed(7) * 1;
     var lat = (Math.random() * (-90 - 90) + 90).toFixed(7) * 1;
     getHotels(long, lat);
+
   }
 
   function getHotels(long, lat) {
@@ -39,14 +40,13 @@ function extractFacts(hotel) { //kan vara onödig
 
   displayInfo(hotelLat, hotelLong);
   getLocation(placeID);
+  getRestaurant(hotelLat, hotelLong);
 //  console.log(placeID);
 //  console.log(hotelLat);
 //  console.log(hotelLong);
 //  console.log(imageRef);
 
 }
-
-
   function changeWindow() {
     window.location.pathname = '/index.html';
   }
@@ -147,6 +147,7 @@ function displayCountry(arr) {
     }
    }
 
+
    function convertCountryToRegion(country) {
      $.ajax({
        url: "https://restcountries.eu/rest/v2/name/"+ country + "?fields=name;country;region;region;subregion;region=true",
@@ -161,3 +162,25 @@ function displayCountry(arr) {
        }
      });
    }
+
+ 
+   function getRestaurant(hotelLat, hotelLong) {
+    $.ajax({
+      //Radie på 1500 (standard)
+      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+hotelLat+","+hotelLong+"&radius=1500&type=restaurant&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
+      headers: {"Accept": "application/json"}
+    })
+    .done(function(data) {
+      console.log("är detta resturang");
+      console.log(data['results'] );
+      var obj = null;
+      
+      for(var i=0; i<data.length;i++) {
+        console.log("är detta resturang 123123123");
+        obj = data[i].name;
+        console.log(obj);
+      }
+
+    });
+}
+   
