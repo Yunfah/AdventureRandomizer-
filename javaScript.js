@@ -9,7 +9,7 @@ function getCoordinates() {
 
 function getHotels(long, lat) {
   $.ajax({
-      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + long + "&radius=50000&type=lodging&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
+      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + long + "&radius=50000&type=lodging&keyword=hotel,lodging,motel&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
       headers: {
         "Accept": "application/json"
       }
@@ -42,6 +42,8 @@ function extractFacts(hotel) { //kan vara onödig
   displayInfo(hotelLat, hotelLong);
   getLocation(placeID);
   getRestaurant(hotelLat, hotelLong);
+  getMuseums(hotelLat, hotelLong);
+  getArt(hotelLat, hotelLong);
   //  console.log(placeID);
   //  console.log(hotelLat);
   //  console.log(hotelLong);
@@ -194,7 +196,51 @@ function getRestaurant(hotelLat, hotelLong) {
       // Make  an error handling if there are no restaurants
       for (var i = 0; i < obj.length; i++) {
         //console.log(obj[i]['name']);
-        $("#mylist").append('<li>' + obj[i]['name'] + '</li>');
+        $("#restList").append('<li>' + obj[i]['name'] + '</li>');
+      }
+    });
+}
+function getArt(hotelLat, hotelLong) {
+  $.ajax({
+      //Radie på 1500 (standard)
+      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + hotelLat + "," + hotelLong + "&radius=1500&type=art_gallery&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
+      headers: {
+        "Accept": "application/json"
+      }
+    })
+    .done(function(data) {
+      //console.log(data['results']);
+      var obj = data['results']
+      // show a list of restaurants if there are
+
+      //TODO
+      // Make  an error handling if there are no restaurants
+      for (var i = 0; i < obj.length; i++) {
+        //console.log(obj[i]['name']);
+        $("#artList").append('<li>' + obj[i]['name'] + '</li>');
+      }
+    });
+
+}
+
+function getMuseums(hotelLat, hotelLong) {
+  $.ajax({
+      //Radie på 1500 (standard)
+      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + hotelLat + "," + hotelLong + "&radius=1500&type=museum&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
+      headers: {
+        "Accept": "application/json"
+      }
+    })
+    .done(function(data) {
+      //console.log(data['results']);
+      var obj = data['results']
+      // show a list of restaurants if there are
+
+      //TODO
+      // Make  an error handling if there are no restaurants
+      for (var i = 0; i < obj.length; i++) {
+        //console.log(obj[i]['name']);
+        $("#musList").append('<li>' + obj[i]['name'] + '</li>');
       }
     });
 }
@@ -218,5 +264,4 @@ function setSpotifyPlaylist(region) {
   }
 
   $('#MusicPLayer').attr('src', str);
-
 }
