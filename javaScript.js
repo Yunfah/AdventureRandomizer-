@@ -171,14 +171,17 @@ function displayCountry(arr) {
       headers: {"Accept": "application/json"}
     })
     .done(function(data) {
-      console.log("är detta resturang");
       console.log(data['results'] );
-      var obj = null;
-      
-      for(var i=0; i<data.length;i++) {
-        console.log("är detta resturang 123123123");
-        obj = data[i].name;
-        console.log(obj);
+      var obj = data['results']
+
+      // show a list of restaurants if there are 
+
+      //TODO
+      // Make  an error handling if there are no restaurants
+      for(var i=0; i<obj.length ;i++) {
+        console.log(obj[i]['name']);
+        $("#mylist").append('<li>'+ obj[i]['name'] + '</li>');
+
       }
 
     });
