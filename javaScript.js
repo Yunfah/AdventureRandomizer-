@@ -1,5 +1,3 @@
-  let myjqxhr;
-  let myjqxhrRespHeads;
 
   //Longitude: -180 to +180, toFixed() decides the amount of decimals
   //Latitude: -90 to +90, toFixed() decides the amount of decimals
@@ -44,8 +42,8 @@ function extractFacts(hotel) { //kan vara onödig
   if(imageRef !== null) {
     getPicture(imageRef);
   }
-  //displayInfo(hotelLat, hotelLong);
-  //getLocation(placeID);
+  displayInfo(hotelLat, hotelLong);
+  getLocation(placeID);
 //  console.log(placeID);
 //  console.log(hotelLat);
 //  console.log(hotelLong);
@@ -76,19 +74,13 @@ function getPicture(imageRef) {
 
   $.ajax({
     url: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+imageRef+"&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo ",
-    headers: {"Accept": "application/json"},
-    dataType: 'image/jpg'
+    headers: {"Accept": "application/json"}
   })
-  .done(function(data, textstatus, jqXHR) {
-    console.log('Response: recieved', this.url);
-    myjqxhr = data;
-    // var imageUrl = data;
-    //vi behöver urlen, inte själva bilden?
-     $('#destination-img').html(<img src="data:image/gif;UTF-8,",data.responseText/>);
+  .done(function(data) {
+     $('#destination-img').attr('src', this.url );
   })
   .fail(function(jqXHR, status, error) {
-    console.log('Response: error', this.url);
-    myjqxhr = jqXHR;
+    console.log('Response: error', error);
   }
 
   );
