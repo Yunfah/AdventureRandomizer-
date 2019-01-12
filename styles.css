@@ -1,10 +1,15 @@
+body{
+font-family: 'avenir';
+
+}
+
+
 /*RANDOMIZER PAGE*/
 .jumbotron {
-  background-image: url("img/img_1.jpg");
   background-size: cover;
   height: 100vh;
   color: white;
-  margin: 0px 0px 0px 0px;
+  margin-bottom: 0px !important;
 }
 
 
@@ -42,6 +47,7 @@ transition: all 0.2s ease-in;
 background-color: #6759A3 !important;
 border-radius: 0px;
 border: 0px;
+font-weight: 500;
 }
 
 
@@ -61,7 +67,9 @@ background-color: #00A653;
 transition: all 0.2s ease-in;
 }
 
-
+#left-content{
+overflow: scroll;
+}
 
 
 .content_area h2{
@@ -178,6 +186,9 @@ min-width: 200px;
   transition: all 0.2s ease-in;
 }
 
+.panel-group {
+  margin-bottom: 0px !important;
+}
 
 
 /*BILD PÅ DESTINATION/HOTELL*/
@@ -186,9 +197,13 @@ min-width: 200px;
   object-position: center; /* Center the image within the element */
   width: 100%;
   max-height: 180px;
-  margin-bottom: 1rem;
 }
 
+
+/*SPOTIFY PLAYER*/
+#spotify-player{
+  padding-top: 2px;
+}
 
 
 /*MAP*/
