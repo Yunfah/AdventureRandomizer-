@@ -191,6 +191,19 @@ min-width: 200px;
   margin-bottom: 0px !important;
 }
 
+li  {
+    color: #000;
+}
+
+ul:hover li {
+    color: #000;
+}
+
+ul li:hover {
+    color: #6759A3;
+    cursor: pointer;
+}
+
 
 /*BILD PÅ DESTINATION/HOTELL*/
 .container_2 #destination-img{
