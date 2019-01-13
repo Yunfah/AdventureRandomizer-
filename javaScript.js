@@ -77,7 +77,7 @@ function placeAttractionMarker(lat, long) {
     lat: lat,
     lng: long
   };
-  map.setZoom(2);
+  map.setZoom(15);
   map.panTo(location);
   var marker = new google.maps.Marker({
     map: map,
@@ -168,6 +168,7 @@ function displayCityAndCountry(arr) {
     if (obj.types['0'] == 'country') {
       $('#country').text(obj.long_name);
       convertCountryToRegion(obj.long_name);
+      break;
     }
   }
 }
@@ -187,7 +188,7 @@ function convertCountryToRegion(country) {
       } else {
         str = data['0'].region;
       }
-  //    console.log(str);
+      //console.log(str);
       setSpotifyPlaylist(str);
     });
 }
@@ -218,7 +219,7 @@ function getRestaurant(hotelLat, hotelLong) {
         lat = obj[i]['geometry']['location']['lat'];
         lng = obj[i]['geometry']['location']['lng'];
         $("#restList").append('<li><a onclick="placeAttractionMarker('+lat+ ','+lng+');">'+ obj[i]['name'] + '</a> </li>');
-        console.log(obj[i]['name'] + ': lat = ' +lat + ', lng = ' + lng);
+      //  console.log(obj[i]['name'] + ': lat = ' +lat + ', lng = ' + lng);
       }
     }
 
@@ -243,14 +244,17 @@ function getArt(hotelLat, hotelLong) {
       //TODO
       // Make  an error handling if there are no restaurants
       if (obj === undefined || obj.length == 0) {
+        $("#artList").append('<li>There are no Art Galleries nearby</li>');
     console.log('finns inga gallerier i närheten');
 } else{
       for (var i = 0; i < obj.length; i++) {
         //console.log(obj[i]['name']);
-        $("#artList").append('<li>' + obj[i]['name'] + '</li>');
         lat = obj[i]['geometry']['location']['lat'];
         lng = obj[i]['geometry']['location']['lng'];
-        console.log(obj[i]['name'] + ': lat = ' +lat + ', lng = ' + lng);
+        $("#artList").append('<li><a onclick="placeAttractionMarker('+lat+ ','+lng+');">'+ obj[i]['name'] + '</a> </li>');
+      //  $("#artList").append('<li>' + obj[i]['name'] + '</li>');
+
+      //  console.log(obj[i]['name'] + ': lat = ' +lat + ', lng = ' + lng);
       }
     }
     });
@@ -275,14 +279,17 @@ function getMuseums(hotelLat, hotelLong) {
       //TODO
       // Make  an error handling if there are no restaurants
       if (obj === undefined || obj.length == 0) {
-    console.log('finns inga museum i närheten');
+          $("#musList").append('<li>There are no museums nearby</li>');
+          console.log('finns inga museum i närheten');
 } else{
       for (var i = 0; i < obj.length; i++) {
         //console.log(obj[i]['name']);
-        $("#musList").append('<li>' + obj[i]['name'] + '</li>');
+      //  $("#musList").append('<li>' + obj[i]['name'] + '</li>');
         lat = obj[i]['geometry']['location']['lat'];
         lng = obj[i]['geometry']['location']['lng'];
-        console.log(obj[i]['name'] + ': lat = ' +lat + ', lng = ' + lng);
+        $("#musList").append('<li><a onclick="placeAttractionMarker('+lat+ ','+lng+');">'+ obj[i]['name'] + '</a> </li>');
+
+      //  console.log(obj[i]['name'] + ': lat = ' +lat + ', lng = ' + lng);
       }
     }
     });
