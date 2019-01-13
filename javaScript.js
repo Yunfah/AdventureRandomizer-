@@ -1,3 +1,4 @@
+var map;
 //Longitude: -180 to +180, toFixed() decides the amount of decimals
 //Latitude: -90 to +90, toFixed() decides the amount of decimals
 function getCoordinates() {
@@ -38,8 +39,7 @@ function extractFacts(hotel) { //kan vara onödig
 
   //var imageRef = hotel['photos'];
   var placeID = hotel['place_id'];
-
-  displayInfo(hotelLat, hotelLong);
+  placeHotelMarker(hotelLat, hotelLong);
   getLocation(placeID);
   getRestaurant(hotelLat, hotelLong);
   getMuseums(hotelLat, hotelLong);
@@ -55,24 +55,38 @@ function changeWindow() {
   window.location.pathname = '/index.html';
 }
 
-function placeMarker(hotelLat, hotelLong) {
+function placeHotelMarker(hotelLat, hotelLong) {
   var location = {
     lat: hotelLat,
     lng: hotelLong
   };
-  var map = new google.maps.Map(document.getElementById('map'), {
+  map = new google.maps.Map(document.getElementById('map'), {
     zoom: 4,
     center: location
   });
   var marker = new google.maps.Marker({
     position: location,
+    animation: google.maps.Animation.DROP,
     map: map
   });
 }
 
-function displayInfo(hotelLat, hotelLong, hotelName, hotelRating) {
-  placeMarker(hotelLat, hotelLong);
-  //Uppdatera vänstra delen av med namn, bild??, rating, stad, land
+function placeAttractionMarker(lat, long) {
+  console.log('Attractionmarker: ' + lat + ',' +long+'');
+  var location = {
+    lat: lat,
+    lng: long
+  };
+  map.setZoom(15);
+  map.panTo(location);
+  var marker = new google.maps.Marker({
+    map: map,
+    position: location,
+    animation: google.maps.Animation.DROP,
+    icon: {
+      url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+    }
+  });
 }
 
 function getPicture(imageRef) {
@@ -154,6 +168,7 @@ function displayCityAndCountry(arr) {
     if (obj.types['0'] == 'country') {
       $('#country').text(obj.long_name);
       convertCountryToRegion(obj.long_name);
+      break;
     }
   }
 }
@@ -173,7 +188,7 @@ function convertCountryToRegion(country) {
       } else {
         str = data['0'].region;
       }
-  //    console.log(str);
+      console.log(str);
       setSpotifyPlaylist(str);
     });
 }
@@ -196,14 +211,15 @@ function getRestaurant(hotelLat, hotelLong) {
       //TODO
       // Make  an error handling if there are no restaurants
       if (obj === undefined || obj.length == 0) {
+          $("#restList").append('<li>There are no restaurant nearby</li>');
     console.log('finns inga restauranger i närheten');
 } else{
       for (var i = 0; i < obj.length; i++) {
         //console.log(obj[i]['name']);
-        $("#restList").append('<li>' + obj[i]['name'] + '</li>');
         lat = obj[i]['geometry']['location']['lat'];
         lng = obj[i]['geometry']['location']['lng'];
-        console.log(obj[i]['name'] + ': lat = ' +lat + ', lng = ' + lng);
+        $("#restList").append('<li><a onclick="placeAttractionMarker('+lat+ ','+lng+');">'+ obj[i]['name'] + '</a> </li>');
+      //  console.log(obj[i]['name'] + ': lat = ' +lat + ', lng = ' + lng);
       }
     }
 
@@ -228,14 +244,17 @@ function getArt(hotelLat, hotelLong) {
       //TODO
       // Make  an error handling if there are no restaurants
       if (obj === undefined || obj.length == 0) {
+        $("#artList").append('<li>There are no Art Galleries nearby</li>');
     console.log('finns inga gallerier i närheten');
 } else{
       for (var i = 0; i < obj.length; i++) {
         //console.log(obj[i]['name']);
-        $("#artList").append('<li>' + obj[i]['name'] + '</li>');
         lat = obj[i]['geometry']['location']['lat'];
         lng = obj[i]['geometry']['location']['lng'];
-        console.log(obj[i]['name'] + ': lat = ' +lat + ', lng = ' + lng);
+        $("#artList").append('<li><a onclick="placeAttractionMarker('+lat+ ','+lng+');">'+ obj[i]['name'] + '</a> </li>');
+      //  $("#artList").append('<li>' + obj[i]['name'] + '</li>');
+
+      //  console.log(obj[i]['name'] + ': lat = ' +lat + ', lng = ' + lng);
       }
     }
     });
@@ -260,14 +279,17 @@ function getMuseums(hotelLat, hotelLong) {
       //TODO
       // Make  an error handling if there are no restaurants
       if (obj === undefined || obj.length == 0) {
-    console.log('finns inga museum i närheten');
+          $("#musList").append('<li>There are no museums nearby</li>');
+          console.log('finns inga museum i närheten');
 } else{
       for (var i = 0; i < obj.length; i++) {
         //console.log(obj[i]['name']);
-        $("#musList").append('<li>' + obj[i]['name'] + '</li>');
+      //  $("#musList").append('<li>' + obj[i]['name'] + '</li>');
         lat = obj[i]['geometry']['location']['lat'];
         lng = obj[i]['geometry']['location']['lng'];
-        console.log(obj[i]['name'] + ': lat = ' +lat + ', lng = ' + lng);
+        $("#musList").append('<li><a onclick="placeAttractionMarker('+lat+ ','+lng+');">'+ obj[i]['name'] + '</a> </li>');
+
+      //  console.log(obj[i]['name'] + ': lat = ' +lat + ', lng = ' + lng);
       }
     }
     });
@@ -277,18 +299,20 @@ function setSpotifyPlaylist(region) {
   var str = "https://open.spotify.com/embed/user/spotify/playlist/";
   if (region == "Asia") {
     str += '37i9dQZF1DXbrQzAhQxGi4';
-  }  if (region == "Africa") {
+  }  else if (region == "Africa") {
     str += '37i9dQZF1DWYkaDif7Ztbp';
-  }  if (region == "Europe") {
-    str += '78AmspImelaKp82JjOT265';
-  }  if (region == "South America") {
+  } else if (region == "Europe") {
+    str += '37i9dQZF1DX5k1GSjYBi0z';
+  }  else if (region == "South America") {
     str += '37i9dQZF1DX10zKzsJ2jva';
-  }  if (region == "Northern America") {
+  }  else if (region == "Northern America") {
     str += '37i9dQZF1DXcBWIGoYBM5M';
-  }  if (region == "Oceania") {
+  }  else if (region == "Oceania") {
     str += '1eAKmsN8Drc1FTHVvzH3o2';
-  }  if (region == "Antarctica ") {
+  }  else if (region == "Antarctica ") {
     str += '61ulfFSmmxMhc2wCdmdMkN';
+  } else {
+    str+= '37i9dQZEVXbMDoHDwVN2tF';
   }
 
   $('#MusicPLayer').attr('src', str);
