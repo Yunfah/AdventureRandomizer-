@@ -1,21 +1,25 @@
 var map;
-//Longitude: -180 to +180, toFixed() decides the amount of decimals
-//Latitude: -90 to +90, toFixed() decides the amount of decimals
+
+/* Function that randomizes coordinates */
 function getCoordinates() {
+  //Longitude: -180 to +180, toFixed() decides the amount of decimals
   var long = (Math.random() * (-180 - 180) + 180).toFixed(7) * 1;
+  //Latitude: -90 to +90, toFixed() decides the amount of decimals
   var lat = (Math.random() * (-90 - 90) + 90).toFixed(7) * 1;
   getHotels(long, lat);
-
 }
 
+/* Function that given a certain pair of coordinates gets a list of the "hotels" within a radius of 50km of those coordinates */
 function getHotels(long, lat) {
   $.ajax({
+      //Using the Google maps nearbysearch API to recieve the hotels
       url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + long + "&radius=50000&type=lodging&keyword=hotel,lodging,motel&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
       headers: {
         "Accept": "application/json"
       }
     })
     .done(function(data) {
+      //If there are no hotels within 50km of the given coordinates, coordinates will be regenerated
       if (data['results'] == 0) {
         getCoordinates();
       } else {
@@ -24,37 +28,34 @@ function getHotels(long, lat) {
     });
 }
 
+/* Function that randomizes a hotel within the given list */
 function randomizeHotel(hotels) {
   var hotel = hotels[Math.floor(Math.random() * hotels.length)];
   extractFacts(hotel);
 }
 
-function extractFacts(hotel) { //kan vara onödig
+/* Function showing name and rating of the hotel, while also calling other functions with data extracted from the hotelresult */
+function extractFacts(hotel) {
   $('#hotel').text(hotel['name']);
   $('#rating').text(hotel['rating']);
 
   var hotelLat = hotel['geometry']['location']['lat'];
   var hotelLong = hotel['geometry']['location']['lng'];
-  //hantera 0 om den är undefined, ha en hårdkodad bild
-
-  //var imageRef = hotel['photos'];
   var placeID = hotel['place_id'];
+
   placeHotelMarker(hotelLat, hotelLong);
   getLocation(placeID);
   getRestaurant(hotelLat, hotelLong);
   getMuseums(hotelLat, hotelLong);
   getArt(hotelLat, hotelLong);
-  //  console.log(placeID);
-  //  console.log(hotelLat);
-  //  console.log(hotelLong);
-  //  console.log(imageRef);
-
 }
 
+/* Function that changes the frame showing when clicking on the X in upper left corner */
 function changeWindow() {
   window.location.pathname = '/index.html';
 }
 
+/* Function that initializes the map, and drops a marker on the hotel location */
 function placeHotelMarker(hotelLat, hotelLong) {
   var location = {
     lat: hotelLat,
@@ -71,8 +72,9 @@ function placeHotelMarker(hotelLat, hotelLong) {
   });
 }
 
+/* Function that drops yellow markers on the location of the coordinates
+given(restaurants, museums or art galleries) */
 function placeAttractionMarker(lat, long) {
-  console.log('Attractionmarker: ' + lat + ',' +long+'');
   var location = {
     lat: lat,
     lng: long
@@ -89,93 +91,93 @@ function placeAttractionMarker(lat, long) {
   });
 }
 
+/* Function that recieves the given picture of the hotel */
 function getPicture(imageRef) {
-
   $.ajax({
+      //Using the Google maps place photos API to recieve the picture
       url: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + imageRef + "&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo ",
       headers: {
         "Accept": "application/json"
       }
     })
     .done(function(data) {
-
       $('#destination-img').attr('src', this.url);
     });
 }
 
+/* Function that recieves further details of the hotel, given a ID */
 function getLocation(placeID) {
   $.ajax({
+      //Using the Google maps place details API to recieve the data
       url: "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeID + "&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
       headers: {
         "Accept": "application/json"
       }
     })
     .done(function(data) {
-      var webpage = data['result']['website'];
-
+      //Checks if the result provides pictures
       if (typeof data['result']['photos'] == "undefined") {
-        console.log("finns ej bilder");
+          console.log("Hotell ger ej bilder");
       } else {
-
         var imageRef = data['result']['photos']['0']['photo_reference'];
-        //console.log(imageRef);
         getPicture(imageRef);
       }
+      //Checks if the result provides a website link
+      var webpage = data['result']['website'];
       if (webpage == null) {
-        document.getElementById("proceed-btn").innerHTML = "Hotel does not have webpage";
-        //  console.log('disabled');
+          document.getElementById("proceed-btn").innerHTML = "Hotel does not have webpage";
       } else {
-        $("#proceed-btn").removeAttr("disabled");
-        var butt = document.getElementById("proceed-btn").href = webpage;
-        //  console.log(webpage);
+          $("#proceed-btn").removeAttr("disabled");
+          var butt = document.getElementById("proceed-btn").href = webpage;
       }
       var address = data['result']['address_components'];
-      //  console.log(address);
       displayCityAndCountry(address);
-
-      //länka knappen till hemsidan
     });
 }
 
+/* Function displaying the country and city there the hotel is placed */
 function displayCityAndCountry(arr) {
   var obj = null;
   for (var i = 0; i < arr.length; i++) {
     obj = arr[i];
+    //Since not all results return the same type of term for city, if-statements are rank in accurcy of "citiness"
     if (obj.types['0'] == 'postal_town') {
-      //  console.log(obj.long_name + " locality");
-      $('#city').text(obj.long_name);
-      break;
+        $('#city').text(obj.long_name);
+        console.log("Postal town");
+        break;
     }
     if (obj.types['0'] == 'locality') {
-      //  console.log(obj.long_name + " locality");
-      $('#city').text(obj.long_name);
-      break;
+        $('#city').text(obj.long_name);
+        console.log("Locality");
+        break;
     }
     if (obj.types['0'] == 'administrative_area_level_3') {
-      //    console.log(obj.long_name + " lvl 3");
-      $('#city').text(obj.long_name);
-      break;
+        $('#city').text(obj.long_name);
+        console.log("Administrative level 3");
+        break;
     }
     if (obj.types['0'] == 'administrative_area_level_2') {
-      //  console.log(obj.long_name + " lvl 2");
-      $('#city').text(obj.long_name);
-      break;
+        $('#city').text(obj.long_name);
+        console.log("Administrative level 2");
+        break;
     }
 
   }
   for (var i = 0; i < arr.length; i++) {
     obj = arr[i];
     if (obj.types['0'] == 'country') {
-      $('#country').text(obj.long_name);
-      convertCountryToRegion(obj.long_name);
-      break;
+        $('#country').text(obj.long_name);
+        console.log(obj.long_name);
+        convertCountryToRegion(obj.long_name);
+        break;
     }
   }
 }
 
-
+/* Function that given a country, gets the continent of that country */
 function convertCountryToRegion(country) {
   $.ajax({
+      //Using the Restcountries API to recieve the continent
       url: "https://restcountries.eu/rest/v2/name/" + country + "?fields=name;country;region;region;subregion;region=true",
       headers: {
         "Accept": "application/json"
@@ -193,108 +195,85 @@ function convertCountryToRegion(country) {
     });
 }
 
-
+/* Function that displays the restaurant near the hotel */
 function getRestaurant(hotelLat, hotelLong) {
   $.ajax({
-      //Radie på 1500 (standard)
+      //Using the Google maps nearbysearch API to recieve the restaurants
       url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + hotelLat + "," + hotelLong + "&radius=1500&type=restaurant&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
       headers: {
         "Accept": "application/json"
       }
     })
     .done(function(data) {
-      //console.log(data['results']);
       var obj = data['results']
-      // show a list of restaurants if there are
       var lat = null;
       var lng =null;
-      //TODO
-      // Make  an error handling if there are no restaurants
       if (obj === undefined || obj.length == 0) {
           $("#restList").append('<li>There are no restaurant nearby</li>');
-    console.log('finns inga restauranger i närheten');
-} else{
-      for (var i = 0; i < obj.length; i++) {
-        //console.log(obj[i]['name']);
-        lat = obj[i]['geometry']['location']['lat'];
-        lng = obj[i]['geometry']['location']['lng'];
-        $("#restList").append('<li><a onclick="placeAttractionMarker('+lat+ ','+lng+');">'+ obj[i]['name'] + '</a> </li>');
-      //  console.log(obj[i]['name'] + ': lat = ' +lat + ', lng = ' + lng);
+          console.log('Det finns inga restauranger i närheten');
+      } else {
+          for (var i = 0; i < obj.length; i++) {
+              lat = obj[i]['geometry']['location']['lat'];
+              lng = obj[i]['geometry']['location']['lng'];
+              $("#restList").append('<li><a onclick="placeAttractionMarker('+lat+ ','+lng+');">'+ obj[i]['name'] + '</a> </li>');
+          }
       }
-    }
-
-
     });
 }
+
+/* Function that displays the art galleries near the hotel */
 function getArt(hotelLat, hotelLong) {
   $.ajax({
-      //Radie på 1500 (standard)
+      //Using the Google maps nearbysearch API to recieve the art galleries
       url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + hotelLat + "," + hotelLong + "&radius=1500&type=art_gallery&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
       headers: {
         "Accept": "application/json"
       }
     })
     .done(function(data) {
-      //console.log(data['results']);
       var obj = data['results']
       var lat = null;
       var lng =null;
-      // show a list of restaurants if there are
-
-      //TODO
-      // Make  an error handling if there are no restaurants
       if (obj === undefined || obj.length == 0) {
-        $("#artList").append('<li>There are no Art Galleries nearby</li>');
-    console.log('finns inga gallerier i närheten');
-} else{
-      for (var i = 0; i < obj.length; i++) {
-        //console.log(obj[i]['name']);
-        lat = obj[i]['geometry']['location']['lat'];
-        lng = obj[i]['geometry']['location']['lng'];
-        $("#artList").append('<li><a onclick="placeAttractionMarker('+lat+ ','+lng+');">'+ obj[i]['name'] + '</a> </li>');
-      //  $("#artList").append('<li>' + obj[i]['name'] + '</li>');
-
-      //  console.log(obj[i]['name'] + ': lat = ' +lat + ', lng = ' + lng);
+          $("#artList").append('<li>There are no art galleries nearby</li>');
+          console.log('Det finns inga art galleries i närheten');
+      } else {
+          for (var i = 0; i < obj.length; i++) {
+              lat = obj[i]['geometry']['location']['lat'];
+              lng = obj[i]['geometry']['location']['lng'];
+              $("#artList").append('<li><a onclick="placeAttractionMarker('+lat+ ','+lng+');">'+ obj[i]['name'] + '</a> </li>');
+          }
       }
-    }
     });
-
 }
 
+/* Function that displays the museums near the hotel */
 function getMuseums(hotelLat, hotelLong) {
   $.ajax({
-      //Radie på 1500 (standard)
+      //Using the Google maps nearbysearch API to recieve the museums
       url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + hotelLat + "," + hotelLong + "&radius=1500&type=museum&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
       headers: {
         "Accept": "application/json"
       }
     })
     .done(function(data) {
-      //console.log(data['results']);
       var obj = data['results']
       var lat = null;
       var lng =null;
-      // show a list of restaurants if there are
-
-      //TODO
-      // Make  an error handling if there are no restaurants
       if (obj === undefined || obj.length == 0) {
           $("#musList").append('<li>There are no museums nearby</li>');
-          console.log('finns inga museum i närheten');
-} else{
-      for (var i = 0; i < obj.length; i++) {
-        //console.log(obj[i]['name']);
-      //  $("#musList").append('<li>' + obj[i]['name'] + '</li>');
-        lat = obj[i]['geometry']['location']['lat'];
-        lng = obj[i]['geometry']['location']['lng'];
-        $("#musList").append('<li><a onclick="placeAttractionMarker('+lat+ ','+lng+');">'+ obj[i]['name'] + '</a> </li>');
-
-      //  console.log(obj[i]['name'] + ': lat = ' +lat + ', lng = ' + lng);
+          console.log('Det finns inga museum i närheten');
+      } else {
+          for (var i = 0; i < obj.length; i++) {
+              lat = obj[i]['geometry']['location']['lat'];
+              lng = obj[i]['geometry']['location']['lng'];
+              $("#musList").append('<li><a onclick="placeAttractionMarker('+lat+ ','+lng+');">'+ obj[i]['name'] + '</a> </li>');
+          }
       }
-    }
     });
 }
 
+/* Function that given a continent, selects which playlist to play */
 function setSpotifyPlaylist(region) {
   var str = "https://open.spotify.com/embed/user/spotify/playlist/";
   if (region == "Asia") {
@@ -303,13 +282,13 @@ function setSpotifyPlaylist(region) {
     str += '37i9dQZF1DWYkaDif7Ztbp';
   } else if (region == "Europe") {
     str += '37i9dQZF1DX5k1GSjYBi0z';
-  }  else if (region == "South America") {
+  } else if (region == "South America") {
     str += '37i9dQZF1DX10zKzsJ2jva';
-  }  else if (region == "Northern America") {
+  } else if (region == "Northern America") {
     str += '37i9dQZF1DXcBWIGoYBM5M';
-  }  else if (region == "Oceania") {
+  } else if (region == "Oceania") {
     str += '1eAKmsN8Drc1FTHVvzH3o2';
-  }  else if (region == "Antarctica ") {
+  } else if (region == "Antarctica ") {
     str += '61ulfFSmmxMhc2wCdmdMkN';
   } else {
     str+= '37i9dQZEVXbMDoHDwVN2tF';
