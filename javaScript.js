@@ -72,6 +72,7 @@ function placeHotelMarker(hotelLat, hotelLong) {
 }
 
 function placeAttractionMarker(lat, long) {
+  console.log('Attractionmarker: ' + lat + ',' +long+'');
   var location = {
     lat: lat,
     lng: long
@@ -209,13 +210,14 @@ function getRestaurant(hotelLat, hotelLong) {
       //TODO
       // Make  an error handling if there are no restaurants
       if (obj === undefined || obj.length == 0) {
+          $("#restList").append('<li>There are no restaurant nearby</li>');
     console.log('finns inga restauranger i närheten');
 } else{
       for (var i = 0; i < obj.length; i++) {
         //console.log(obj[i]['name']);
-        $("#restList").append('<li>' + obj[i]['name'] + '</li>');
         lat = obj[i]['geometry']['location']['lat'];
         lng = obj[i]['geometry']['location']['lng'];
+        $("#restList").append('<li><a onclick="placeAttractionMarker('+lat+ ','+lng+');">'+ obj[i]['name'] + '</a> </li>');
         console.log(obj[i]['name'] + ': lat = ' +lat + ', lng = ' + lng);
       }
     }
