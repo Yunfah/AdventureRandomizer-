@@ -1,3 +1,4 @@
+var map;
 //Longitude: -180 to +180, toFixed() decides the amount of decimals
 //Latitude: -90 to +90, toFixed() decides the amount of decimals
 function getCoordinates() {
@@ -38,8 +39,7 @@ function extractFacts(hotel) { //kan vara onödig
 
   //var imageRef = hotel['photos'];
   var placeID = hotel['place_id'];
-
-  displayInfo(hotelLat, hotelLong);
+  placeHotelMarker(hotelLat, hotelLong);
   getLocation(placeID);
   getRestaurant(hotelLat, hotelLong);
   //  console.log(placeID);
@@ -53,24 +53,37 @@ function changeWindow() {
   window.location.pathname = '/index.html';
 }
 
-function placeMarker(hotelLat, hotelLong) {
+function placeHotelMarker(hotelLat, hotelLong) {
   var location = {
     lat: hotelLat,
     lng: hotelLong
   };
-  var map = new google.maps.Map(document.getElementById('map'), {
+  map = new google.maps.Map(document.getElementById('map'), {
     zoom: 4,
     center: location
   });
   var marker = new google.maps.Marker({
     position: location,
+    animation: google.maps.Animation.DROP,
     map: map
   });
 }
 
-function displayInfo(hotelLat, hotelLong, hotelName, hotelRating) {
-  placeMarker(hotelLat, hotelLong);
-  //Uppdatera vänstra delen av med namn, bild??, rating, stad, land
+function placeAttractionMarker(lat, long) {
+  var location = {
+    lat: lat,
+    lng: long
+  };
+  map.setZoom(2);
+  map.panTo(location);
+  var marker = new google.maps.Marker({
+    map: map,
+    position: location,
+    animation: google.maps.Animation.DROP,
+    icon: {
+      url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+    }
+  });
 }
 
 function getPicture(imageRef) {
