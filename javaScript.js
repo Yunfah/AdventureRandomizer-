@@ -188,7 +188,7 @@ function convertCountryToRegion(country) {
       } else {
         str = data['0'].region;
       }
-      //console.log(str);
+      console.log(str);
       setSpotifyPlaylist(str);
     });
 }
@@ -299,18 +299,20 @@ function setSpotifyPlaylist(region) {
   var str = "https://open.spotify.com/embed/user/spotify/playlist/";
   if (region == "Asia") {
     str += '37i9dQZF1DXbrQzAhQxGi4';
-  }  if (region == "Africa") {
+  }  else if (region == "Africa") {
     str += '37i9dQZF1DWYkaDif7Ztbp';
-  }  if (region == "Europe") {
-    str += '78AmspImelaKp82JjOT265';
-  }  if (region == "South America") {
+  } else if (region == "Europe") {
+    str += '37i9dQZF1DX5k1GSjYBi0z';
+  }  else if (region == "South America") {
     str += '37i9dQZF1DX10zKzsJ2jva';
-  }  if (region == "Northern America") {
+  }  else if (region == "Northern America") {
     str += '37i9dQZF1DXcBWIGoYBM5M';
-  }  if (region == "Oceania") {
+  }  else if (region == "Oceania") {
     str += '1eAKmsN8Drc1FTHVvzH3o2';
-  }  if (region == "Antarctica ") {
+  }  else if (region == "Antarctica ") {
     str += '61ulfFSmmxMhc2wCdmdMkN';
+  } else {
+    str+= '37i9dQZEVXbMDoHDwVN2tF';
   }
 
   $('#MusicPLayer').attr('src', str);
