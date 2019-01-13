@@ -10,7 +10,7 @@ function getCoordinates() {
 
 function getHotels(long, lat) {
   $.ajax({
-      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + long + "&radius=50000&type=lodging&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
+      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + long + "&radius=50000&type=lodging&keyword=hotel,lodging,motel&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
       headers: {
         "Accept": "application/json"
       }
@@ -42,6 +42,8 @@ function extractFacts(hotel) { //kan vara onödig
   placeHotelMarker(hotelLat, hotelLong);
   getLocation(placeID);
   getRestaurant(hotelLat, hotelLong);
+  getMuseums(hotelLat, hotelLong);
+  getArt(hotelLat, hotelLong);
   //  console.log(placeID);
   //  console.log(hotelLat);
   //  console.log(hotelLong);
@@ -202,13 +204,85 @@ function getRestaurant(hotelLat, hotelLong) {
       //console.log(data['results']);
       var obj = data['results']
       // show a list of restaurants if there are
+      var lat = null;
+      var lng =null;
+      //TODO
+      // Make  an error handling if there are no restaurants
+      if (obj === undefined || obj.length == 0) {
+    console.log('finns inga restauranger i närheten');
+} else{
+      for (var i = 0; i < obj.length; i++) {
+        //console.log(obj[i]['name']);
+        $("#restList").append('<li>' + obj[i]['name'] + '</li>');
+        lat = obj[i]['geometry']['location']['lat'];
+        lng = obj[i]['geometry']['location']['lng'];
+        console.log(obj[i]['name'] + ': lat = ' +lat + ', lng = ' + lng);
+      }
+    }
+
+
+    });
+}
+function getArt(hotelLat, hotelLong) {
+  $.ajax({
+      //Radie på 1500 (standard)
+      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + hotelLat + "," + hotelLong + "&radius=1500&type=art_gallery&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
+      headers: {
+        "Accept": "application/json"
+      }
+    })
+    .done(function(data) {
+      //console.log(data['results']);
+      var obj = data['results']
+      var lat = null;
+      var lng =null;
+      // show a list of restaurants if there are
 
       //TODO
       // Make  an error handling if there are no restaurants
+      if (obj === undefined || obj.length == 0) {
+    console.log('finns inga gallerier i närheten');
+} else{
       for (var i = 0; i < obj.length; i++) {
         //console.log(obj[i]['name']);
-        $("#mylist").append('<li>' + obj[i]['name'] + '</li>');
+        $("#artList").append('<li>' + obj[i]['name'] + '</li>');
+        lat = obj[i]['geometry']['location']['lat'];
+        lng = obj[i]['geometry']['location']['lng'];
+        console.log(obj[i]['name'] + ': lat = ' +lat + ', lng = ' + lng);
       }
+    }
+    });
+
+}
+
+function getMuseums(hotelLat, hotelLong) {
+  $.ajax({
+      //Radie på 1500 (standard)
+      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + hotelLat + "," + hotelLong + "&radius=1500&type=museum&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
+      headers: {
+        "Accept": "application/json"
+      }
+    })
+    .done(function(data) {
+      //console.log(data['results']);
+      var obj = data['results']
+      var lat = null;
+      var lng =null;
+      // show a list of restaurants if there are
+
+      //TODO
+      // Make  an error handling if there are no restaurants
+      if (obj === undefined || obj.length == 0) {
+    console.log('finns inga museum i närheten');
+} else{
+      for (var i = 0; i < obj.length; i++) {
+        //console.log(obj[i]['name']);
+        $("#musList").append('<li>' + obj[i]['name'] + '</li>');
+        lat = obj[i]['geometry']['location']['lat'];
+        lng = obj[i]['geometry']['location']['lng'];
+        console.log(obj[i]['name'] + ': lat = ' +lat + ', lng = ' + lng);
+      }
+    }
     });
 }
 
@@ -231,5 +305,4 @@ function setSpotifyPlaylist(region) {
   }
 
   $('#MusicPLayer').attr('src', str);
-
 }
