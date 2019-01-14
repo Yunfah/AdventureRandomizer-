@@ -188,11 +188,17 @@ function convertCountryToRegion(country) {
     })
     .done(function(data) {
       var str = '';
-      if (data['0'].region == 'Americas') {
-        str = data['0'].subregion;
-      } else {
-        str = data['0'].region;
-      }
+      var i= 0;
+
+        if (data['0'].region == 'Americas') {
+          str = data['0'].subregion;
+        } else if (data['1'] != null) {
+          str = data['1'].region;
+        } else {
+          str = data['0'].region;
+        }
+
+
       console.log(str);
       setSpotifyPlaylist(str);
     });
