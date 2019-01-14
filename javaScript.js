@@ -213,7 +213,7 @@ function getRestaurant(hotelLat, hotelLong) {
       var lat = null;
       var lng =null;
       if (obj === undefined || obj.length == 0) {
-          $("#restList").append('<li>There are no restaurant nearby</li>');
+          $("#restList").append('<li>There are no restaurants nearby</li>');
           console.log('Det finns inga restauranger i närheten');
       } else {
           for (var i = 0; i < obj.length; i++) {
@@ -230,7 +230,7 @@ function getArt(hotelLat, hotelLong) {
   $.ajax({
       //Using the Google maps nearbysearch API to recieve the art galleries
       //Changed API Key
-      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + hotelLat + "," + hotelLong + "&radius=1500&type=art_gallery&key=AIzaSyBCZEoS8cNuNkHxDzdIw0KhBil7oMgd2jM",
+      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + hotelLat + "," + hotelLong + "&radius=10000&type=art_gallery&key=AIzaSyBCZEoS8cNuNkHxDzdIw0KhBil7oMgd2jM",
       headers: {
         "Accept": "application/json"
       }
@@ -257,7 +257,7 @@ function getMuseums(hotelLat, hotelLong) {
   $.ajax({
       //Using the Google maps nearbysearch API to recieve the museums
       //Changed API Key
-      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + hotelLat + "," + hotelLong + "&radius=1500&type=museum&key=AIzaSyBCZEoS8cNuNkHxDzdIw0KhBil7oMgd2jM",
+      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + hotelLat + "," + hotelLong + "&radius=10000&type=museum&key=AIzaSyBCZEoS8cNuNkHxDzdIw0KhBil7oMgd2jM",
       headers: {
         "Accept": "application/json"
       }
