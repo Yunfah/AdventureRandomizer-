@@ -13,7 +13,8 @@ function getCoordinates() {
 function getHotels(long, lat) {
   $.ajax({
       //Using the Google maps nearbysearch API to recieve the hotels
-      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + long + "&radius=50000&type=lodging&keyword=hotel,lodging,motel&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
+      //Changed API key
+      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + long + "&radius=50000&type=lodging&keyword=hotel,lodging,motel&key=AIzaSyBCZEoS8cNuNkHxDzdIw0KhBil7oMgd2jM",
       headers: {
         "Accept": "application/json"
       }
@@ -95,7 +96,8 @@ function placeAttractionMarker(lat, long) {
 function getPicture(imageRef) {
   $.ajax({
       //Using the Google maps place photos API to recieve the picture
-      url: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + imageRef + "&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo ",
+      //Changed API KEY
+      url: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + imageRef + "&key=AIzaSyBCZEoS8cNuNkHxDzdIw0KhBil7oMgd2jM ",
       headers: {
         "Accept": "application/json"
       }
@@ -109,7 +111,8 @@ function getPicture(imageRef) {
 function getLocation(placeID) {
   $.ajax({
       //Using the Google maps place details API to recieve the data
-      url: "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeID + "&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
+      //Changed API Key
+      url: "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeID + "&key=AIzaSyBCZEoS8cNuNkHxDzdIw0KhBil7oMgd2jM",
       headers: {
         "Accept": "application/json"
       }
@@ -199,7 +202,8 @@ function convertCountryToRegion(country) {
 function getRestaurant(hotelLat, hotelLong) {
   $.ajax({
       //Using the Google maps nearbysearch API to recieve the restaurants
-      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + hotelLat + "," + hotelLong + "&radius=1500&type=restaurant&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
+      // Chnaged API key
+      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + hotelLat + "," + hotelLong + "&radius=1500&type=restaurant&key=AIzaSyBCZEoS8cNuNkHxDzdIw0KhBil7oMgd2jM",
       headers: {
         "Accept": "application/json"
       }
@@ -225,7 +229,8 @@ function getRestaurant(hotelLat, hotelLong) {
 function getArt(hotelLat, hotelLong) {
   $.ajax({
       //Using the Google maps nearbysearch API to recieve the art galleries
-      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + hotelLat + "," + hotelLong + "&radius=1500&type=art_gallery&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
+      //Changed API Key
+      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + hotelLat + "," + hotelLong + "&radius=1500&type=art_gallery&key=AIzaSyBCZEoS8cNuNkHxDzdIw0KhBil7oMgd2jM",
       headers: {
         "Accept": "application/json"
       }
@@ -251,7 +256,8 @@ function getArt(hotelLat, hotelLong) {
 function getMuseums(hotelLat, hotelLong) {
   $.ajax({
       //Using the Google maps nearbysearch API to recieve the museums
-      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + hotelLat + "," + hotelLong + "&radius=1500&type=museum&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
+      //Changed API Key
+      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + hotelLat + "," + hotelLong + "&radius=1500&type=museum&key=AIzaSyBCZEoS8cNuNkHxDzdIw0KhBil7oMgd2jM",
       headers: {
         "Accept": "application/json"
       }
