@@ -135,6 +135,14 @@ min-width: 200px;
 
 /*ACCORDION MENY*/
 
+#restList li a, #musList li a, #artList li a{
+  padding: 0px 0px 0px 0px;
+}
+
+.panel-title{
+  background-color: #F3F3F3;
+}
+
 #accordion .panel {
   border-radius: 0;
   border: 0;
@@ -147,7 +155,7 @@ min-width: 200px;
   padding: 15px 15px;
   border-top: 2px solid #fff;
   text-decoration: none;
-  background-color: #F3F3F3;
+
 }
 
 /*accordion hover*/
@@ -172,7 +180,7 @@ min-width: 200px;
   transition: all 0.2s ease-in;
 }
 
-/* Add Indicator fontawesome icon to the left */
+
 #accordion .panel-heading .accordion-toggle::before {
   float: left;
   color: white;
@@ -191,6 +199,7 @@ min-width: 200px;
   margin-bottom: 0px !important;
 }
 
+/*STYLES TILL UL LI LISTS*/
 li  {
     color: #000;
 }
