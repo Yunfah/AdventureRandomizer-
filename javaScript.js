@@ -9,7 +9,8 @@ function getCoordinates() {
 
 function getHotels(long, lat) {
   $.ajax({
-      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + long + "&radius=50000&type=lodging&keyword=hotel,lodging,motel&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
+    // ändrat på API nyckeln
+      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + long + "&radius=50000&type=lodging&keyword=hotel,lodging,motel&key=AIzaSyBCZEoS8cNuNkHxDzdIw0KhBil7oMgd2jM",
       headers: {
         "Accept": "application/json"
       }
@@ -78,7 +79,8 @@ function displayInfo(hotelLat, hotelLong, hotelName, hotelRating) {
 function getPicture(imageRef) {
 
   $.ajax({
-      url: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + imageRef + "&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo ",
+    // Ändrat på api nyckeln
+      url: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + imageRef + "&key=AIzaSyBCZEoS8cNuNkHxDzdIw0KhBil7oMgd2jM ",
       headers: {
         "Accept": "application/json"
       }
@@ -91,7 +93,8 @@ function getPicture(imageRef) {
 
 function getLocation(placeID) {
   $.ajax({
-      url: "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeID + "&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
+    // Ändrat på API nyckeln
+      url: "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeID + "&key=AIzaSyBCZEoS8cNuNkHxDzdIw0KhBil7oMgd2jM",
       headers: {
         "Accept": "application/json"
       }
@@ -182,7 +185,8 @@ function convertCountryToRegion(country) {
 function getRestaurant(hotelLat, hotelLong) {
   $.ajax({
       //Radie på 1500 (standard)
-      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + hotelLat + "," + hotelLong + "&radius=1500&type=restaurant&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
+      //API nyckeln ändrad
+      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + hotelLat + "," + hotelLong + "&radius=1500&type=restaurant&key=AIzaSyBCZEoS8cNuNkHxDzdIw0KhBil7oMgd2jM",
       headers: {
         "Accept": "application/json"
       }
@@ -203,7 +207,8 @@ function getRestaurant(hotelLat, hotelLong) {
 function getArt(hotelLat, hotelLong) {
   $.ajax({
       //Radie på 1500 (standard)
-      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + hotelLat + "," + hotelLong + "&radius=1500&type=art_gallery&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
+      //API nyckeln ändrad
+      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + hotelLat + "," + hotelLong + "&radius=1500&type=art_gallery&key=AIzaSyBCZEoS8cNuNkHxDzdIw0KhBil7oMgd2jM",
       headers: {
         "Accept": "application/json"
       }
@@ -226,7 +231,8 @@ function getArt(hotelLat, hotelLong) {
 function getMuseums(hotelLat, hotelLong) {
   $.ajax({
       //Radie på 1500 (standard)
-      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + hotelLat + "," + hotelLong + "&radius=1500&type=museum&key=AIzaSyBLs-NPmwcLLjovVoIC4tKKhysLzND7vuo",
+      // API nyckeln ändrad 
+      url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + hotelLat + "," + hotelLong + "&radius=1500&type=museum&key=AIzaSyBCZEoS8cNuNkHxDzdIw0KhBil7oMgd2jM",
       headers: {
         "Accept": "application/json"
       }
